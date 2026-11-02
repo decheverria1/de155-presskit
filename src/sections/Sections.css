@@ -134,11 +134,24 @@
 {
   margin:0
 }
+.soundcloud-frame
+{
+  margin-top:1rem;
+  padding:clamp(.6rem,2vw,1.25rem);
+  background:linear-gradient(145deg,#111820,#282d33);
+  border:1px solid #39424d;
+  border-radius:8px;
+  box-shadow:0 12px 32px #0003
+}
 .soundcloud-visual iframe
 {
   display:block;
   width:100%;
-  border:0
+  border:1px solid #c8cdd2;
+  box-sizing:border-box;
+  border-radius:3px;
+  background:#fff;
+  box-shadow:0 0 0 4px #ffffff12
 }
 .soundcloud-credit
 {
@@ -156,7 +169,7 @@
 }
 @media print
 {
-  .soundcloud-visual iframe { display:none }
+  .soundcloud-frame { display:none }
 }
 .gallery img
 {

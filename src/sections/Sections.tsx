@@ -13,7 +13,7 @@ export function Sections({ lang }: { lang: Language }) {
       {soundcloudSelection.map(item => <article key={item.url}>
         {item.embedUrl ? <div className="soundcloud-visual">
           <p className="metadata">{item.category[lang]}</p>
-          <iframe
+          <div className="soundcloud-frame"><iframe
             title="Noise Is The Message / DE155 Schranz Sets"
             width="100%"
             height="600"
@@ -23,7 +23,7 @@ export function Sections({ lang }: { lang: Language }) {
             referrerPolicy="no-referrer"
             allow="autoplay; encrypted-media"
             src={item.embedUrl}
-          />
+          /></div>
           <div className="soundcloud-credit">
             <a href="https://soundcloud.com/de-155-techno" target="_blank" rel="noopener noreferrer">DE155</a>
             {' \u00b7 '}
