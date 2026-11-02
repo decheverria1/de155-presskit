@@ -75,8 +75,11 @@ export const assets: { logo: Photo; hero?: Photo; about?: Photo } = {
   logo: { src: 'media/de155-logo.png', alt: { es: 'DE155', en: 'DE155' } },
   hero: { src: 'media/hero.jpg', alt: { es: 'Retrato de perfil de DE155 frente a un muro de concreto', en: 'Profile portrait of DE155 against a concrete wall' } },
 };
-// TODO: Instagram, SoundCloud, Spotify y Beatport oficiales.
-export const links: ArtistLink[] = [];
+export const links: ArtistLink[] = [
+  { label: 'Instagram', url: 'https://www.instagram.com/de155.techno/' },
+  { label: 'SoundCloud', url: 'https://soundcloud.com/de-155-techno' },
+  { label: 'Linktree', url: 'https://linktr.ee/de155.techno' },
+];
 
 export const soundcloudSelection = [
   { title: { es: 'SUPPRA EXCLUSIVE PODCAST w/ DE155', en: 'SUPPRA EXCLUSIVE PODCAST w/ DE155' }, category: { es: 'Mix destacado', en: 'Featured mix' }, cover: { src: 'media/sets/featured-mix.jpg', alt: { es: 'Portada del podcast de DE155 para SUPPRA', en: 'DE155 podcast artwork for SUPPRA' } }, url: 'https://soundcloud.com/suppra-us/suppra-exclusive-podcast-w-6' },

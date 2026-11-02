@@ -193,3 +193,37 @@
     color:var(--muted)
   }
 }
+
+.hero-socials
+{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5rem;
+  margin-top:1.5rem;
+  font:var(--mono)
+}
+.hero-socials a
+{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:44px;
+  min-height:44px;
+  color:var(--muted);
+  text-decoration:none;
+  transition:color .2s ease
+}
+.hero-socials svg
+{
+  flex-shrink:0
+}
+.hero-socials a:hover,
+.hero-socials a:focus-visible
+{
+  color:var(--accent-text)
+}
+.hero-socials a:focus-visible
+{
+  outline:1px solid var(--accent-text);
+  outline-offset:4px
+}
