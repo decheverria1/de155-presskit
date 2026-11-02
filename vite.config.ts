@@ -8,6 +8,7 @@ import sharp from 'sharp';
 // Originals stay outside public; only resized, metadata-free WebP files are served.
 function pressGallery(): Plugin {
   const directory = resolve('media/press');
+  const logoPath = resolve('public/media/de155-logo.png');
   const virtualId = '\0virtual:press-gallery';
   const images = new Map<string, { data: Buffer; width: number; height: number }>();
   let building = false;
@@ -18,11 +19,22 @@ function pressGallery(): Plugin {
     async load(id) {
       if (id !== virtualId) return;
       images.clear();
+      // Turn the dark PNG logo into white ink with a transparent background.
+      // Keep its existing alpha and bake 22% opacity into the watermark pixels.
+      const logo = await sharp(logoPath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+      for (let offset = 0; offset < logo.data.length; offset += 4) {
+        const ink = 1 - (logo.data[offset] + logo.data[offset + 1] + logo.data[offset + 2]) / (3 * 255);
+        logo.data[offset + 3] = Math.round(logo.data[offset + 3] * ink * 0.22);
+        logo.data[offset] = logo.data[offset + 1] = logo.data[offset + 2] = 255;
+      }
+      const watermark = await sharp(logo.data, { raw: { width: logo.info.width, height: logo.info.height, channels: 4 } }).trim().png().toBuffer();
       const files = (await readdir(directory)).filter(name => /\.(jpe?g|png|webp)$/i.test(name)).sort((a, b) => a.localeCompare(b, 'en', { numeric: true }));
       const entries = [];
       for (const name of files) {
         const original = await readFile(resolve(directory, name));
-        const { data, info } = await sharp(original).rotate().resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true }).webp({ quality: 80 }).toBuffer({ resolveWithObject: true });
+        const resized = await sharp(original).rotate().resize({ width: 1200, height: 1200, fit: 'inside', withoutEnlargement: true }).toBuffer({ resolveWithObject: true });
+        const stamp = await sharp(watermark).resize({ width: Math.max(1, Math.round(resized.info.width * 0.5)), height: Math.max(1, Math.round(resized.info.height * 0.35)), fit: 'inside' }).png().toBuffer();
+        const { data, info } = await sharp(resized.data).composite([{ input: stamp, gravity: 'centre' }]).webp({ quality: 70 }).toBuffer({ resolveWithObject: true });
         const hash = createHash('sha256').update(data).digest('hex').slice(0, 16);
         const fileName = `media/press/${hash}.webp`;
         images.set(fileName, { data, width: info.width, height: info.height });
@@ -34,10 +46,10 @@ function pressGallery(): Plugin {
       return `export default [${entries.join(',')}];`;
     },
     configureServer(server) {
-      server.watcher.add(directory);
+      server.watcher.add([directory, logoPath]);
       const refresh = (file: string) => {
         const path = relative(directory, file);
-        if (path.startsWith('..') || !/\.(jpe?g|png|webp)$/i.test(path)) return;
+        if (resolve(file) !== logoPath && (path.startsWith('..') || !/\.(jpe?g|png|webp)$/i.test(path))) return;
         const module = server.moduleGraph.getModuleById(virtualId);
         if (module) server.moduleGraph.invalidateModule(module);
         server.ws.send({ type: 'full-reload' });

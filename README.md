@@ -61,7 +61,14 @@ por nombre; puedes usar prefijos `01-`, `02-` si necesitas controlar el orden.
 Durante `npm run dev` se actualiza al agregar, modificar o quitar fotos. Para
 actualizar el sitio publicado, vuelve a compilar y desplegar.
 
-Vite convierte cada foto a WebP con calidad 80, corrige la orientación y limita
-el lado más largo a 1600 px, sin ampliar fotos pequeñas ni conservar metadatos.
+Vite convierte cada foto a WebP con calidad 70, corrige la orientación y limita
+el lado más largo a 1200 px, sin ampliar fotos pequeñas ni conservar metadatos.
+Integra el logo `public/media/de155-logo.png` centrado, en blanco al 22% de
+opacidad, con un ancho de hasta el 50% de la foto y fondo transparente.
 Solo esas versiones se incluyen en la web; los originales permanecen en
 `media/press/`. No hay botones de descarga.
+
+Estar fuera de `public` evita publicar originales en Pages, pero no los hace
+privados si el repositorio GitHub es público: sus archivos e historial siguen
+siendo accesibles. Para confidencialidad real hace falta almacenar los originales
+en un repositorio o almacenamiento privado.
