@@ -79,6 +79,6 @@ export const assets: { logo: Photo; hero?: Photo; about?: Photo } = {
 export const links: ArtistLink[] = [];
 
 export const soundcloudSelection = [
-  { title: { es: 'Mix destacado', en: 'Featured mix' }, url: 'https://soundcloud.com/suppra-us/suppra-exclusive-podcast-w-6', height: 166 },
-  { title: { es: 'Noise Is The Message / Playlist', en: 'Noise Is The Message / Playlist' }, url: 'https://soundcloud.com/de-155-techno/sets/noise-is-the-message', height: 450 },
+  { title: { es: 'SUPPRA EXCLUSIVE PODCAST w/ DE155', en: 'SUPPRA EXCLUSIVE PODCAST w/ DE155' }, category: { es: 'Mix destacado', en: 'Featured mix' }, cover: { src: 'media/sets/featured-mix.jpg', alt: { es: 'Portada del podcast de DE155 para SUPPRA', en: 'DE155 podcast artwork for SUPPRA' } }, url: 'https://soundcloud.com/suppra-us/suppra-exclusive-podcast-w-6' },
+  { title: { es: 'Noise Is The Message', en: 'Noise Is The Message' }, category: { es: 'Playlist', en: 'Playlist' }, cover: { src: 'media/sets/noise-is-the-message.jpg', alt: { es: 'Portada de la playlist Noise Is The Message', en: 'Noise Is The Message playlist artwork' } }, url: 'https://soundcloud.com/de-155-techno/sets/noise-is-the-message' },
 ];
