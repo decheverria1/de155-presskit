@@ -37,12 +37,22 @@ function pressGallery(): Plugin {
         // the photo proportionally. Let the logo extend beyond the photo edges.
         const rotation = await sharp(watermark).rotate(angle, { background: '#00000000' }).png().toBuffer();
         const rotated = await sharp(rotation).trim().png().toBuffer();
-        const stamp = await sharp(rotated).resize({
-          width,
-          height,
-          fit: 'cover',
-          position: 'centre',
-        }).png().toBuffer();
+        // Centre the visible ink rather than its asymmetric bounding rectangle.
+        const pixels = await sharp(rotated).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+        let mass = 0, momentX = 0, momentY = 0;
+        for (let y = 0; y < pixels.info.height; y++) {
+          for (let x = 0; x < pixels.info.width; x++) {
+            const alpha = pixels.data[(y * pixels.info.width + x) * 4 + 3];
+            mass += alpha;
+            momentX += (x + 0.5) * alpha;
+            momentY += (y + 0.5) * alpha;
+          }
+        }
+        const centreX = mass ? momentX / mass : pixels.info.width / 2;
+        const centreY = mass ? momentY / mass : pixels.info.height / 2;
+        const scale = Math.max(width / pixels.info.width, height / pixels.info.height);
+        // The photo-sized canvas clips overflow after placing the ink centre.
+        const stamp = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><g transform="translate(${width / 2} ${height / 2}) scale(${scale})"><image x="${-centreX}" y="${-centreY}" width="${pixels.info.width}" height="${pixels.info.height}" xlink:href="data:image/png;base64,${rotated.toString('base64')}"/></g></svg>`);
         const { data, info } = await sharp(resized.data).composite([{ input: stamp, gravity: 'centre' }]).webp({ quality: 70 }).toBuffer({ resolveWithObject: true });
         const hash = createHash('sha256').update(data).digest('hex').slice(0, 16);
         const fileName = `media/press/${hash}.webp`;
