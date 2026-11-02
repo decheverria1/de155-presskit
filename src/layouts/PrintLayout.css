@@ -43,11 +43,30 @@
   size:A4;
   margin:10mm 10mm 14mm;
   background:#090909;
+  color:#ececec;
+  print-color-adjust:exact;
+  -webkit-print-color-adjust:exact;
+  @top-left-corner { content:""; background:#090909; color:#ececec }
+  @top-left { content:""; background:#090909; color:#ececec }
+  @top-center { content:""; background:#090909; color:#ececec }
+  @top-right { content:""; background:#090909; color:#ececec }
+  @top-right-corner { content:""; background:#090909; color:#ececec }
+  @left-top { content:""; background:#090909; color:#ececec }
+  @left-middle { content:""; background:#090909; color:#ececec }
+  @left-bottom { content:""; background:#090909; color:#ececec }
+  @right-top { content:""; background:#090909; color:#ececec }
+  @right-middle { content:""; background:#090909; color:#ececec }
+  @right-bottom { content:""; background:#090909; color:#ececec }
+  @bottom-left-corner { content:""; background:#090909; color:#ececec }
+  @bottom-left { content:""; background:#090909; color:#ececec }
+  @bottom-right { content:""; background:#090909; color:#ececec }
+  @bottom-right-corner { content:""; background:#090909; color:#ececec }
   @bottom-center
   {
     content:"Sujeto a cambios, versi\00f3n est\00e1tica sin actualizaciones";
     font:7pt Arial,Helvetica,sans-serif;
-    color:#666
+    background:#090909;
+    color:#ececec
   }
 }
 @page english
@@ -58,7 +77,7 @@
 {
   html,body,.print-view { background:var(--bg); color:var(--text) }
   .print-view { --gutter:0; --mono:400 8pt/1.5 'Courier New',monospace }
-  .print-view,.print-view * { print-color-adjust:exact; -webkit-print-color-adjust:exact }
+  html,body,.print-view,.print-view * { print-color-adjust:exact; -webkit-print-color-adjust:exact }
   .print-toolbar { display:none }
   .print-view:lang(en) { page:english }
   .print-disclaimer { display:none }

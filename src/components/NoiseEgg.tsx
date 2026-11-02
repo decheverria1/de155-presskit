@@ -12,27 +12,9 @@ export function NoiseEgg({ lang, children }: { lang: Language; children: ReactNo
     if (!rave) return;
     document.documentElement.classList.add('noise-rave');
     const timer = window.setTimeout(() => setRave(false), 12000);
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let last = 0;
-    const sparks = new Set<HTMLElement>();
-    const move = (event: PointerEvent) => {
-      if (reduced.matches || event.pointerType !== 'mouse' || performance.now() - last < 45) return;
-      last = performance.now();
-      const spark = document.createElement('span');
-      spark.className = 'noise-spark';
-      spark.setAttribute('aria-hidden', 'true');
-      spark.style.left = `${event.clientX}px`;
-      spark.style.top = `${event.clientY}px`;
-      document.body.append(spark);
-      sparks.add(spark);
-      spark.addEventListener('animationend', () => { spark.remove(); sparks.delete(spark); }, { once: true });
-    };
-    window.addEventListener('pointermove', move);
     return () => {
       window.clearTimeout(timer);
-      window.removeEventListener('pointermove', move);
       document.documentElement.classList.remove('noise-rave');
-      sparks.forEach(spark => spark.remove());
     };
   }, [rave]);
 
