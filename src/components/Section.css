@@ -1,3 +1,7 @@
+.section[hidden]
+{
+  display:none;
+}
 .section
 {
   padding:5rem 0;
