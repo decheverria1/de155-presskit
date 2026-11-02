@@ -31,7 +31,21 @@ function pressGallery(): Plugin {
       for (const name of files) {
         const original = await readFile(resolve(directory, name));
         const resized = await sharp(original).rotate().resize({ width: 1200, height: 1200, fit: 'inside', withoutEnlargement: true }).toBuffer({ resolveWithObject: true });
-        const stamp = await sharp(watermark).resize({ width: Math.max(1, Math.round(resized.info.width * 0.5)), height: Math.max(1, Math.round(resized.info.height * 0.35)), fit: 'inside' }).png().toBuffer();
+        const { width, height } = resized.info;
+        const angle = -Math.atan2(height, width) * 180 / Math.PI;
+        // Stretch along the photo's diagonal, then fit the rotated logo inside
+        // the image so it spans almost corner to corner without clipping.
+        const stretched = await sharp(watermark).resize({
+          width: Math.max(1, Math.round(Math.hypot(width, height))),
+          height: Math.max(1, Math.round(Math.min(width, height) * 0.25)),
+          fit: 'fill',
+        }).png().toBuffer();
+        const rotated = await sharp(stretched).rotate(angle, { background: '#00000000' }).png().toBuffer();
+        const stamp = await sharp(rotated).resize({
+          width: Math.max(1, Math.round(width * 0.96)),
+          height: Math.max(1, Math.round(height * 0.96)),
+          fit: 'inside',
+        }).png().toBuffer();
         const { data, info } = await sharp(resized.data).composite([{ input: stamp, gravity: 'centre' }]).webp({ quality: 70 }).toBuffer({ resolveWithObject: true });
         const hash = createHash('sha256').update(data).digest('hex').slice(0, 16);
         const fileName = `media/press/${hash}.webp`;
