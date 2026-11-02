@@ -13,13 +13,15 @@ function shuffled<T>(items: readonly T[]): T[] {
   return result;
 }
 
-export function VisualGallery({ lang }: { lang: Language }) {
+export function VisualGallery({ lang, printMode = false }: { lang: Language; printMode?: boolean }) {
   const [category, setCategory] = useState<'press' | 'live'>('press');
   const [collections] = useState(() => ({ press: shuffled(pressPhotos), live: shuffled(livePhotos) }));
   const photos = collections[category];
   const description = category === 'press'
     ? (lang === 'es' ? 'Fotograf\u00eda de prensa de DE155' : 'DE155 press photograph')
     : (lang === 'es' ? 'DE155 en vivo' : 'DE155 live performance');
+
+  if (printMode) return <div className="print-photo-collections">{(['press', 'live'] as const).map(value => <div className="print-photo-collection" key={value}><h3>{value === 'press' ? 'Press' : 'Live'}</h3><div className="print-photo-grid">{(value === 'press' ? pressPhotos : livePhotos).map((photo, index) => <figure key={photo.src}><img src={photo.src} width={photo.width} height={photo.height} alt={`${value === 'press' ? (lang === 'es' ? 'Foto de prensa' : 'Press photograph') : (lang === 'es' ? 'En vivo' : 'Live performance')} / DE155 / ${index + 1}`} loading="eager" decoding="sync"/></figure>)}</div></div>)}</div>;
 
   return <>
     <div className="gallery-filters" role="group" aria-label={lang === 'es' ? 'Tipo de fotograf\u00eda' : 'Photo category'}>

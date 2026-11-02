@@ -1,9 +1,26 @@
-import { artist, releases, soundcloudSelection, highlights, gallery, assets, links } from '../data/artist';
+import { useState } from 'react';
+import { artist } from '../data/artist';
 import { ui } from '../data/ui';
-import { Media } from '../components/Media';
+import { Hero } from '../sections/Hero';
+import { Sections } from '../sections/Sections';
 import type { Language } from '../types/content';
 import './PrintLayout.css';
+
 export function PrintLayout({ lang }: { lang: Language }) {
   const t = ui[lang];
-  return <div className="print-view"><div className="print-toolbar"><a href={`?lang=${lang}`}>{t.back} ↗</a><button onClick={() => window.print()}>{t.print}</button></div><main className="print-document"><article className="print-page"><header><span>Electronic Press Kit / {artist.location}</span><h1>{artist.name}</h1><p className="print-tagline">{artist.tagline}</p></header><p className="print-genres">{artist.genres.join(' / ')} · {artist.bpm} BPM</p>{assets.hero && <Media photo={assets.hero} lang={lang} eager/>}<section><h2>{t.nav[0]}</h2><p>{artist.bio[lang]}</p><p>{artist.philosophy[lang]}</p></section><section><h2>{t.booking}</h2>{artist.bookingEmail ? <a href={`mailto:${artist.bookingEmail}`}>{artist.bookingEmail}</a> : <p className="print-todo">{t.bookingTodo}</p>}<ul>{links.map(link => <li key={link.label}><a href={link.url}>{link.label} — {link.url}</a></li>)}</ul></section><footer>DE155 / 01</footer></article><article className="print-page"><h2>{t.music}</h2>{releases.length ? releases.map(item => <section key={item.url}><h3>{item.title}</h3><p>{item.album && <>{item.album}<br/></>}{item.label} / {item.date ? <time dateTime={item.date}>{new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(item.date))}</time> : item.year}</p><ul>{(item.platforms ?? [{ platform: "spotify", url: item.url }]).map(link => <li key={link.platform}><a href={link.url}>{link.platform === "appleMusic" ? "Apple Music" : link.platform} — {link.url}</a></li>)}</ul></section>) : <p className="print-todo">{t.releaseTodo}</p>}<h2>{t.sets}</h2>{soundcloudSelection.map(item => <section key={item.url}><h3>{item.title[lang]}</h3><a href={item.url}>{item.url}</a></section>)}<h2>{t.highlights}</h2>{highlights.length ? highlights.map((item, index) => <p key={index}>{item.year} — {item.description[lang]}</p>) : <p className="print-todo">{t.highlightsTodo}</p>}<h2>{t.gallery}</h2>{gallery.length ? <div className="print-gallery">{gallery.map(photo => <figure key={photo.src}><Media photo={photo} lang={lang} eager/><figcaption>{photo.alt[lang]}</figcaption></figure>)}</div> : <p className="print-todo">{t.galleryTodo}</p>}<footer>DE155 / 02 — {artist.location}</footer></article></main></div>;
+  const [preparing, setPreparing] = useState(false);
+  async function printDocument() {
+    setPreparing(true);
+    try {
+      await document.fonts.ready;
+      await Promise.all(Array.from(document.querySelectorAll<HTMLImageElement>('.print-document img')).map(img => img.decode().catch(() => undefined)));
+      window.print();
+    } finally {
+      setPreparing(false);
+    }
+  }
+  return <div className="print-view">
+    <div className="print-toolbar"><a href={`?lang=${lang}`}>{t.back} &#8599;</a><button className="button primary" disabled={preparing} onClick={printDocument}>{preparing ? (lang === 'es' ? 'Preparando...' : 'Preparing...') : t.print}</button></div>
+    <main className="print-document"><Hero lang={lang}/><div className="content"><Sections lang={lang} printMode/></div><footer><span>{artist.name} / EPK</span><span>{artist.location}</span></footer></main>
+  </div>;
 }
