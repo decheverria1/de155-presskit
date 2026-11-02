@@ -56,7 +56,7 @@ export const highlights: Highlight[] = [];
 export const gallery: Photo[] = [];
 export const assets: { logo: Photo; hero?: Photo; about?: Photo } = {
   logo: { src: 'media/de155-logo.png', alt: { es: 'DE155', en: 'DE155' } },
-  hero: { src: 'media/hero.webp', alt: { es: 'Retrato de perfil de DE155 frente a un muro de concreto', en: 'Profile portrait of DE155 against a concrete wall' } },
+  hero: { src: 'media/hero.jpg', alt: { es: 'Retrato de perfil de DE155 frente a un muro de concreto', en: 'Profile portrait of DE155 against a concrete wall' } },
 };
 // TODO: Instagram, SoundCloud, Spotify y Beatport oficiales.
 export const links: ArtistLink[] = [];
