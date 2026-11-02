@@ -21,9 +21,21 @@
 .print-document .scroll-link,
 .print-document #contact>.section-content>.button { display:none }
 .print-booking-email { font:var(--mono); overflow-wrap:anywhere; color:var(--muted) }
-.print-photo-collection h3 { font:var(--mono); color:var(--accent-text) }
-.print-photo-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem }
-.print-photo-grid figure { margin:0; break-inside:avoid }
+.print-photo-collection + .print-photo-collection { margin-top:3rem }
+.print-photo-collection h3
+{
+  margin:0 0 1.25rem;
+  padding:.75rem 0 .75rem 1rem;
+  border-top:1px solid var(--line);
+  border-left:3px solid var(--accent-text);
+  color:var(--accent-text);
+  font-size:1.75rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  break-after:avoid
+}
+.print-photo-grid { columns:2; column-gap:1rem }
+.print-photo-grid figure { display:inline-block; width:100%; margin:0 0 1rem; vertical-align:top; break-inside:avoid }
 .print-photo-grid img { width:100%; height:auto }
 .print-disclaimer { flex-basis:100%; margin:0; font:var(--mono); color:var(--muted) }
 @page { size:A4; margin:10mm; background:#090909 }
@@ -57,8 +69,11 @@
   .print-document #music .release-card:has(img),
   .print-document #sets .release-card:has(img) { grid-template-columns:25mm minmax(0,1fr); gap:5mm }
   .print-document .release-platforms a { min-width:9mm; min-height:9mm }
-  .print-document .print-photo-grid { gap:4mm }
-  .print-document .print-photo-grid img { max-height:110mm; object-fit:contain }
+  .print-document .print-photo-collection + .print-photo-collection { margin-top:10mm }
+  .print-document .print-photo-collection h3 { font-size:20pt; padding:4mm; margin-bottom:5mm }
+  .print-document .print-photo-grid { column-gap:4mm }
+  .print-document .print-photo-grid figure { margin-bottom:4mm }
+  .print-document .print-photo-grid img { height:auto; max-height:none }
   .print-document #contact { break-inside:avoid }
   .print-document .booking-options { align-items:flex-end }
   .print-document footer { padding:5mm 0; font-size:8pt }
