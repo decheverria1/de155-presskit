@@ -26,6 +26,12 @@ export const releases: Release[] = [
       alt: { es: 'Portada de Open Your Mind de DE155', en: 'Cover artwork for Open Your Mind by DE155' },
     },
     url: 'https://open.spotify.com/track/79QJ3nEIR5WtumnmMZzBba',
+    platforms: [
+      { platform: 'spotify', url: 'https://open.spotify.com/track/79QJ3nEIR5WtumnmMZzBba' },
+      { platform: 'soundcloud', url: 'https://on.soundcloud.com/OylhBjyutRtS0wBwMM' },
+      { platform: 'beatport', url: 'https://www.beatport.com/release/open-your-mind/7110827' },
+      { platform: 'appleMusic', url: 'https://music.apple.com/es/song/open-your-mind/6782980251' },
+    ],
   },
   {
     title: 'Keep It Pumping',
