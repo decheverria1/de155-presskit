@@ -2,10 +2,21 @@ import { useState } from 'react';
 import pressPhotos from 'virtual:press-gallery';
 import livePhotos from 'virtual:live-gallery';
 import type { Language } from '../types/content';
+import { MasonryGallery } from './MasonryGallery';
+
+function shuffled<T>(items: readonly T[]): T[] {
+  const result = [...items];
+  for (let index = result.length - 1; index > 0; index--) {
+    const other = Math.floor(Math.random() * (index + 1));
+    [result[index], result[other]] = [result[other], result[index]];
+  }
+  return result;
+}
 
 export function VisualGallery({ lang }: { lang: Language }) {
   const [category, setCategory] = useState<'press' | 'live'>('press');
-  const photos = category === 'press' ? pressPhotos : livePhotos;
+  const [collections] = useState(() => ({ press: shuffled(pressPhotos), live: shuffled(livePhotos) }));
+  const photos = collections[category];
   const description = category === 'press'
     ? (lang === 'es' ? 'Fotograf\u00eda de prensa de DE155' : 'DE155 press photograph')
     : (lang === 'es' ? 'DE155 en vivo' : 'DE155 live performance');
@@ -21,8 +32,7 @@ export function VisualGallery({ lang }: { lang: Language }) {
         onClick={() => setCategory(value)}
       >{value === 'press' ? 'Press' : 'Live'}</button>)}
     </div>
-    <div id="visual-gallery" className="gallery press-gallery" role="region" aria-label={category === 'press' ? 'Press' : 'Live'}>
-      {photos.map((photo, index) => <figure key={photo.src}>
+    <MasonryGallery photos={photos} label={category === 'press' ? 'Press' : 'Live'} renderPhoto={(photo, index) =>
         <img
           src={photo.src}
           width={photo.width}
@@ -34,7 +44,6 @@ export function VisualGallery({ lang }: { lang: Language }) {
           onContextMenu={event => event.preventDefault()}
           onDragStart={event => event.preventDefault()}
         />
-      </figure>)}
-    </div>
+    }/>
   </>;
 }
