@@ -1,4 +1,5 @@
-import { artist, assets, releases, soundcloudSelection, highlights, gallery, links } from '../data/artist';
+import pressPhotos from 'virtual:press-gallery';
+import { artist, assets, releases, soundcloudSelection, highlights, links } from '../data/artist';
 import { ui } from '../data/ui';
 import { Section, Pending } from '../components/Section';
 import { Media } from '../components/Media';
@@ -44,5 +45,5 @@ export function Sections({ lang }: { lang: Language }) {
         </div>}
       </article>)}
     </div>
-  </Section><Section hidden id="highlights" number="04" title={t.highlights}>{highlights.length ? <ol className="milestones">{highlights.map((item, index) => <li key={index}><span>{item.year}</span><p>{item.description[lang]}</p></li>)}</ol> : <Pending>{t.highlightsTodo}</Pending>}</Section><Section id="gallery" number="05" title={t.gallery}>{gallery.length ? <div className="gallery">{gallery.map(photo => <figure key={photo.src}><Media photo={photo} lang={lang}/><figcaption>{photo.alt[lang]}</figcaption></figure>)}</div> : <Pending>{t.galleryTodo}</Pending>}</Section><Section id="contact" number="06" title={t.contact}><p className="metadata">{t.booking}</p>{artist.bookingEmail ? <a className="email" href={`mailto:${artist.bookingEmail}`}>{artist.bookingEmail} ↗</a> : <Pending>{t.bookingTodo}</Pending>}<div className="socials">{links.map(link => <a key={link.label} href={link.url}>{link.label} ↗</a>)}</div><a className="button" href={`?print=1&lang=${lang}`}>{t.pdf} ↗</a></Section></>;
+  </Section><Section hidden id="highlights" number="04" title={t.highlights}>{highlights.length ? <ol className="milestones">{highlights.map((item, index) => <li key={index}><span>{item.year}</span><p>{item.description[lang]}</p></li>)}</ol> : <Pending>{t.highlightsTodo}</Pending>}</Section><Section id="gallery" number="05" title={t.gallery}><p className="press-label">Press <span>{String(pressPhotos.length).padStart(2, '0')}</span></p>{pressPhotos.length ? <div className="gallery press-gallery">{pressPhotos.map((photo, index) => <figure key={photo.src}><img src={photo.src} width={photo.width} height={photo.height} alt={`${lang === 'es' ? 'Fotografía de prensa de DE155' : 'DE155 press photograph'} ${index + 1}`} loading="lazy" decoding="async" /></figure>)}</div> : <Pending>{t.galleryTodo}</Pending>}</Section><Section id="contact" number="06" title={t.contact}><p className="metadata">{t.booking}</p>{artist.bookingEmail ? <a className="email" href={`mailto:${artist.bookingEmail}`}>{artist.bookingEmail} ↗</a> : <Pending>{t.bookingTodo}</Pending>}<div className="socials">{links.map(link => <a key={link.label} href={link.url}>{link.label} ↗</a>)}</div><a className="button" href={`?print=1&lang=${lang}`}>{t.pdf} ↗</a></Section></>;
 }

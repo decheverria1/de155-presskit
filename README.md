@@ -53,3 +53,15 @@ Referencias: [Vite](https://vite.dev/guide/static-deploy.html#github-pages), [Gi
 ## Próxima iteración
 
 Confirmar biografías ES/EN; incorporar correo de booking, perfiles oficiales, fotos, portadas, lanzamientos, sets e hitos verificables. Proporcionar logos exportados y fuentes con sus licencias. Revisar móvil/tablet/escritorio, teclado y paginación A4 con contenido real; luego refinar motion y considerar exportación automatizada.
+# Fotografías Press
+
+Agrega JPG, JPEG, PNG o WebP a `media/press/` (fuera de `public`). La galería
+detecta los archivos sin mantener una lista de nombres en el código y los ordena
+por nombre; puedes usar prefijos `01-`, `02-` si necesitas controlar el orden.
+Durante `npm run dev` se actualiza al agregar, modificar o quitar fotos. Para
+actualizar el sitio publicado, vuelve a compilar y desplegar.
+
+Vite convierte cada foto a WebP con calidad 80, corrige la orientación y limita
+el lado más largo a 1600 px, sin ampliar fotos pequeñas ni conservar metadatos.
+Solo esas versiones se incluyen en la web; los originales permanecen en
+`media/press/`. No hay botones de descarga.
