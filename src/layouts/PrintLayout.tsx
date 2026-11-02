@@ -29,6 +29,6 @@ export function PrintLayout({ lang }: { lang: Language }) {
   }
   return <div className="print-view">
     <div className="print-toolbar"><a href={`?lang=${lang}`}>{t.back} &#8599;</a><button className="button primary" disabled={preparing} onClick={printDocument}>{preparing ? (lang === 'es' ? 'Preparando...' : 'Preparing...') : t.print}</button></div>
-    <main className="print-document"><Hero lang={lang}/><div className="content"><Sections lang={lang} printMode/></div><footer><span>{artist.name} / EPK</span><span>{artist.location}</span><p className="print-disclaimer">{lang === 'es' ? 'Sujeto a cambios, versi\u00f3n est\u00e1tica sin actualizaciones' : 'Subject to change, static version without updates'}</p></footer></main>
+    <main className="print-document"><Hero lang={lang}/><div className="content"><Sections lang={lang} printMode/></div><footer><span>{artist.name} / EPK</span><span>{artist.location}</span></footer></main><p className="print-disclaimer">{lang === 'es' ? 'Sujeto a cambios, versi\u00f3n est\u00e1tica sin actualizaciones' : 'Subject to change, static version without updates'}</p>
   </div>;
 }

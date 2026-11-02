@@ -36,7 +36,7 @@
 .print-photo-grid { columns:2; column-gap:1rem }
 .print-photo-grid figure { display:inline-block; width:100%; margin:0 0 1rem; vertical-align:top; break-inside:avoid }
 .print-photo-grid img { width:100%; height:auto }
-.print-disclaimer { flex-basis:100%; margin:0; font:var(--mono); color:var(--muted) }
+.print-disclaimer { margin:0; padding:1rem var(--gutter); font:var(--mono); color:var(--muted) }
 @page { size:A4; margin:10mm; background:#090909 }
 @media print
 {
@@ -44,6 +44,18 @@
   .print-view { --gutter:0; --mono:400 8pt/1.5 'Courier New',monospace }
   .print-view,.print-view * { print-color-adjust:exact; -webkit-print-color-adjust:exact }
   .print-toolbar { display:none }
+  .print-disclaimer
+  {
+    position:fixed;
+    bottom:-7mm;
+    left:0;
+    right:0;
+    padding:0;
+    text-align:center;
+    font-size:7pt;
+    line-height:1.3;
+    color:#666
+  }
   .print-document { font-size:10pt }
   .print-document .hero { padding:0; break-inside:avoid }
   .print-document .hero-top { font-size:8pt }
