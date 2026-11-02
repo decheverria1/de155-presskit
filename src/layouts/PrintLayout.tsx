@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { artist } from '../data/artist';
 import { ui } from '../data/ui';
 import { Hero } from '../sections/Hero';
@@ -9,11 +9,19 @@ import './PrintLayout.css';
 export function PrintLayout({ lang }: { lang: Language }) {
   const t = ui[lang];
   const [preparing, setPreparing] = useState(false);
+  const autoPrintStarted = useRef(false);
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('autoprint') !== '1' || autoPrintStarted.current) return;
+    autoPrintStarted.current = true;
+    void printDocument();
+  }, []);
   async function printDocument() {
     setPreparing(true);
     try {
       await document.fonts.ready;
       await Promise.all(Array.from(document.querySelectorAll<HTMLImageElement>('.print-document img')).map(img => img.decode().catch(() => undefined)));
+      await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+      window.focus();
       window.print();
     } finally {
       setPreparing(false);
