@@ -15,7 +15,15 @@ export const artist = {
   bookingEmail: '',
 };
 // TODO: añadir únicamente contenido y enlaces verificados. Nunca usar URLs ficticias.
-export const releases: Release[] = [];
+export const releases: Release[] = [
+  {
+    title: 'Open Your Mind',
+    label: 'Flower Vision Label',
+    year: 2026,
+    date: '2026-07-09',
+    url: 'https://open.spotify.com/track/79QJ3nEIR5WtumnmMZzBba',
+  },
+];
 export const djSets: DJSet[] = [];
 export const highlights: Highlight[] = [];
 export const gallery: Photo[] = [];
