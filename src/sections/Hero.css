@@ -1,2 +1,160 @@
-/* PNG: 4000px wide; first visible pixel at x=607. Offset = 607 / 4000 = 15.175%. */
-.hero{padding:2rem var(--gutter) 0;max-width:1600px;margin:auto}.hero-top{display:flex;justify-content:space-between;gap:1rem;font:var(--mono);text-transform:uppercase;color:var(--muted)}.hero-top span:last-child{color:var(--text);white-space:nowrap}.hero-title{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:2.2rem 0 1.5rem;gap:1rem}.hero h1{flex:1;min-width:0;max-width:1100px;margin:0;overflow:hidden}.hero h1 img{width:100%;aspect-ratio:3/1;object-fit:cover;object-position:center;transform:translateX(-15.175%)}.tempo{display:none}.hero-bottom{display:grid;gap:2rem;padding:2.5rem 0}.tagline{font-size:clamp(2.7rem,7vw,7rem);font-weight:800;line-height:.98;letter-spacing:-.055em;margin:0 0 1.5rem}.tagline em{font-style:normal;color:var(--accent-text)}.genre-list{font:var(--mono);color:var(--muted);line-height:1.8}.actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}.hero-note{border:1px solid var(--line);border-top:3px solid var(--accent);padding:1.8rem;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;background:linear-gradient(140deg,var(--petrol),var(--bg));font:var(--mono)}.hero-note .signal{font-size:3rem;font-weight:700;letter-spacing:-.08em}.hero-note>span:last-child{color:var(--muted);font-size:.7rem}.hero-photo img{height:100%;max-height:440px;object-fit:cover;width:100%}.scroll-link{display:flex;align-items:center;gap:1rem;padding:1.8rem 0;font:var(--mono);color:var(--muted)}.scroll-link span:first-child{color:var(--accent-text);font-size:1.5rem}.scroll-link span:last-child{margin-left:auto}@media(min-width:760px){.hero-bottom{grid-template-columns:1.6fr 1fr;gap:4rem}.tempo{display:flex;flex-direction:column;text-align:right}.tempo strong{font-size:4rem;letter-spacing:-.08em;color:var(--accent-text)}.tempo span{font:var(--mono);color:var(--muted)}}
+/* PNG 4000x2000: white logo bounds x=607..3347, y=611..1411.
+   Keep its scale, offset x by 607/4000 and y by 611/2000.
+   Reserve only its 801px visible height at the original image scale. */
+.hero
+{
+  padding:2rem var(--gutter) 0;
+  max-width:1600px;
+  margin:auto
+}
+.hero-top
+{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  font:var(--mono);
+  text-transform:uppercase;
+  color:var(--muted)
+}
+.hero-top span:last-child
+{
+  color:var(--text);
+  white-space:nowrap
+}
+.hero-title
+{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  padding:2.2rem 0 1.5rem;
+  gap:1rem
+}
+.hero h1
+{
+  flex:1;
+  min-width:0;
+  max-width:1100px;
+  margin:0;
+  position:relative;
+  aspect-ratio:4000 / 801;
+  overflow:hidden
+}
+.hero h1 img
+{
+  width:100%;
+  height:auto;
+  position:absolute;
+  top:0;
+  left:0;
+  transform:translate(-15.175%, -30.55%)
+}
+.tempo
+{
+  display:none
+}
+.hero-bottom
+{
+  display:grid;
+  gap:2rem;
+  padding:2.5rem 0
+}
+.tagline
+{
+  font-size:clamp(2.7rem,7vw,7rem);
+  font-weight:800;
+  line-height:.98;
+  letter-spacing:-.055em;
+  margin:0 0 1.5rem
+}
+.tagline em
+{
+  font-style:normal;
+  color:var(--accent-text)
+}
+.genre-list
+{
+  font:var(--mono);
+  color:var(--muted);
+  line-height:1.8
+}
+.actions
+{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.8rem;
+  margin-top:2rem
+}
+.hero-note
+{
+  border:1px solid var(--line);
+  border-top:3px solid var(--accent);
+  padding:1.8rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:flex-start;
+  background:linear-gradient(140deg,var(--petrol),var(--bg));
+  font:var(--mono)
+}
+.hero-note .signal
+{
+  font-size:3rem;
+  font-weight:700;
+  letter-spacing:-.08em
+}
+.hero-note>span:last-child
+{
+  color:var(--muted);
+  font-size:.7rem
+}
+.hero-photo img
+{
+  height:100%;
+  max-height:440px;
+  object-fit:cover;
+  width:100%
+}
+.scroll-link
+{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  padding:1.8rem 0;
+  font:var(--mono);
+  color:var(--muted)
+}
+.scroll-link span:first-child
+{
+  color:var(--accent-text);
+  font-size:1.5rem
+}
+.scroll-link span:last-child
+{
+  margin-left:auto
+}
+@media(min-width:760px)
+{
+  .hero-bottom
+  {
+    grid-template-columns:1.6fr 1fr;
+    gap:4rem
+  }
+  .tempo
+  {
+    display:flex;
+    flex-direction:column;
+    text-align:right
+  }
+  .tempo strong
+  {
+    font-size:4rem;
+    letter-spacing:-.08em;
+    color:var(--accent-text)
+  }
+  .tempo span
+  {
+    font:var(--mono);
+    color:var(--muted)
+  }
+}
