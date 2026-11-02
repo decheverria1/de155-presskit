@@ -240,13 +240,6 @@
   color:var(--muted);
   margin-top:.6rem
 }
-.socials
-{
-  display:flex;
-  flex-wrap:wrap;
-  gap:1rem;
-  margin:1.5rem 0
-}
 .email
 {
   font-size:clamp(1.2rem,2vw,2rem);
@@ -313,7 +306,7 @@
 
 .music-talk
 {
-  margin-top:2rem;
+  margin:2rem 0 1.5rem;
   padding-top:1.5rem;
   border-top:1px solid var(--line)
 }
@@ -347,3 +340,4 @@
   min-height:52px;
   box-sizing:border-box
 }
+
