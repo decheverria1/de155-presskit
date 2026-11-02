@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import pressPhotos from 'virtual:press-gallery';
+import livePhotos from 'virtual:live-gallery';
 import type { Language } from '../types/content';
 
 export function VisualGallery({ lang }: { lang: Language }) {
   const [category, setCategory] = useState<'press' | 'live'>('press');
-  const photos = category === 'press' ? pressPhotos : [];
+  const photos = category === 'press' ? pressPhotos : livePhotos;
+  const description = category === 'press'
+    ? (lang === 'es' ? 'Fotograf\u00eda de prensa de DE155' : 'DE155 press photograph')
+    : (lang === 'es' ? 'DE155 en vivo' : 'DE155 live performance');
 
   return <>
     <div className="gallery-filters" role="group" aria-label={lang === 'es' ? 'Tipo de fotograf\u00eda' : 'Photo category'}>
@@ -23,7 +27,7 @@ export function VisualGallery({ lang }: { lang: Language }) {
           src={photo.src}
           width={photo.width}
           height={photo.height}
-          alt={`${lang === 'es' ? 'Fotograf\u00eda de prensa de DE155' : 'DE155 press photograph'} ${index + 1}`}
+          alt={`${description} ${index + 1}`}
           loading="lazy"
           decoding="async"
           draggable={false}

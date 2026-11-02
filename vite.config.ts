@@ -6,16 +6,17 @@ import { createHash } from 'node:crypto';
 import sharp from 'sharp';
 
 // Originals stay outside public; only resized, metadata-free WebP files are served.
-function pressGallery(): Plugin {
-  const directory = resolve('media/press');
+function photoGallery(category: 'press' | 'live'): Plugin {
+  const directory = resolve(`media/${category}`);
   const logoPath = resolve('public/media/de155-logo.png');
-  const virtualId = '\0virtual:press-gallery';
+  const moduleId = `virtual:${category}-gallery`;
+  const virtualId = `\0${moduleId}`;
   const images = new Map<string, { data: Buffer; width: number; height: number }>();
   let building = false;
   return {
-    name: 'press-gallery',
+    name: `${category}-gallery`,
     configResolved(config) { building = config.command === 'build'; },
-    resolveId(id) { if (id === 'virtual:press-gallery') return virtualId; },
+    resolveId(id) { if (id === moduleId) return virtualId; },
     async load(id) {
       if (id !== virtualId) return;
       images.clear();
@@ -55,7 +56,7 @@ function pressGallery(): Plugin {
         const stamp = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}"><g transform="translate(${width / 2} ${height / 2}) scale(${scale})"><image x="${-centreX}" y="${-centreY}" width="${pixels.info.width}" height="${pixels.info.height}" xlink:href="data:image/png;base64,${rotated.toString('base64')}"/></g></svg>`);
         const { data, info } = await sharp(resized.data).composite([{ input: stamp, gravity: 'centre' }]).webp({ quality: 70 }).toBuffer({ resolveWithObject: true });
         const hash = createHash('sha256').update(data).digest('hex').slice(0, 16);
-        const fileName = `media/press/${hash}.webp`;
+        const fileName = `media/${category}/${hash}.webp`;
         images.set(fileName, { data, width: info.width, height: info.height });
         const src = building
           ? `import.meta.ROLLUP_FILE_URL_${this.emitFile({ type: 'asset', fileName, source: data })}`
@@ -76,7 +77,7 @@ function pressGallery(): Plugin {
       server.watcher.on('add', refresh).on('unlink', refresh).on('change', refresh);
       server.middlewares.use((req, res, next) => {
         const path = decodeURI((req.url ?? '').split('?')[0]);
-        const key = path.slice(path.indexOf('media/press/'));
+        const key = path.slice(path.indexOf(`media/${category}/`));
         const image = images.get(key);
         if (!image) return next();
         res.setHeader('Content-Type', 'image/webp');
@@ -87,4 +88,4 @@ function pressGallery(): Plugin {
 }
 
 // Relative assets support both / and /REPOSITORY/, including ?print=1.
-export default defineConfig({ base: './', plugins: [pressGallery()] });
+export default defineConfig({ base: './', plugins: [photoGallery('press'), photoGallery('live')] });
