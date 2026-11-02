@@ -1,4 +1,4 @@
-import type { ArtistLink, DJSet, Highlight, Photo, Release } from '../types/content';
+import type { ArtistLink, Highlight, Photo, Release } from '../types/content';
 
 export const artist = {
   name: 'DE155', tagline: 'Noise Is The Message', location: 'Santiago, Chile', bpm: '145 – 165',
@@ -67,9 +67,7 @@ export const releases: Release[] = [
     ],
   },
 ];
-export const djSets: DJSet[] = [];
 export const highlights: Highlight[] = [];
-export const gallery: Photo[] = [];
 export const assets: { logo: Photo; hero?: Photo; about?: Photo } = {
   logo: { src: 'media/de155-logo.png', alt: { es: 'DE155', en: 'DE155' } },
   hero: { src: 'media/hero.jpg', alt: { es: 'Retrato de perfil de DE155 frente a un muro de concreto', en: 'Profile portrait of DE155 against a concrete wall' } },

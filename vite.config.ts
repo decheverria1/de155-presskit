@@ -76,7 +76,14 @@ function photoGallery(category: 'press' | 'live'): Plugin {
       };
       server.watcher.on('add', refresh).on('unlink', refresh).on('change', refresh);
       server.middlewares.use((req, res, next) => {
-        const path = decodeURI((req.url ?? '').split('?')[0]);
+        let path: string;
+        try {
+          path = decodeURI((req.url ?? '').split('?')[0]);
+        } catch {
+          res.statusCode = 400;
+          res.end('Bad request');
+          return;
+        }
         const key = path.slice(path.indexOf(`media/${category}/`));
         const image = images.get(key);
         if (!image) return next();

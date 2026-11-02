@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { printPdf } from '../utils/printPdf';
 import { VisualGallery } from '../components/VisualGallery';
 import { artist, assets, releases, soundcloudSelection, highlights } from '../data/artist';
@@ -10,12 +11,13 @@ import { PlatformIcon } from '../components/PlatformIcon';
 import './Sections.css';
 export function Sections({ lang, printMode = false }: { lang: Language; printMode?: boolean }) {
   const t = ui[lang];
+  const [soundcloudEnabled, setSoundcloudEnabled] = useState(false);
   return <><Section id="about" number="01" title={t.about}><p className="bio">{artist.bio[lang]}</p><p className="philosophy">{artist.philosophy[lang]}</p><div className="facts"><span>{artist.location}</span><span>{artist.bpm} BPM</span></div>{assets.about && <Media photo={assets.about} lang={lang} eager={printMode}/>}</Section><Section id="music" number="02" title={t.music}>{releases.length ? <div className="cards">{releases.map(item => <article key={item.url}><div className="release-card">{item.cover && <Media photo={item.cover} lang={lang} eager={printMode}/>}<div className="release-details"><p className="metadata">{item.album && <>{item.album}<br/></>}{item.label} / {item.date ? <time dateTime={item.date}>{new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(item.date))}</time> : item.year}</p><h3>{item.title}</h3><ReleasePlatforms release={item} lang={lang}/></div></div></article>)}</div> : <Pending>{t.releaseTodo}</Pending>}</Section><Section id="sets" number="03" title={t.sets}>
     <div className="cards sets-selection">
       {soundcloudSelection.map(item => <article key={item.url}>
         {item.embedUrl && !printMode ? <div className="soundcloud-visual">
           <p className="metadata">{item.category[lang]}</p>
-          <div className="soundcloud-frame"><iframe
+          {soundcloudEnabled ? <div className="soundcloud-frame"><iframe
             title="Noise Is The Message / DE155 Schranz Sets"
             width="100%"
             height="600"
@@ -25,7 +27,11 @@ export function Sections({ lang, printMode = false }: { lang: Language; printMod
             referrerPolicy="no-referrer"
             allow="autoplay; encrypted-media"
             src={item.embedUrl}
-          /></div>
+          /></div> : <div className="soundcloud-consent">
+            <Media photo={item.cover} lang={lang}/>
+            <p>{lang === 'es' ? 'Al cargar el reproductor, te conectarás con SoundCloud, que recibirá tu dirección IP y datos del navegador.' : 'Loading the player connects to SoundCloud, which receives your IP address and browser data.'}</p>
+            <button type="button" className="button" onClick={() => setSoundcloudEnabled(true)}>{lang === 'es' ? 'Cargar reproductor de SoundCloud' : 'Load SoundCloud player'}</button>
+          </div>}
           <div className="soundcloud-credit">
             <a href="https://soundcloud.com/de-155-techno" target="_blank" rel="noopener noreferrer">DE155</a>
             {' \u00b7 '}

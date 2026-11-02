@@ -13,7 +13,7 @@ npm run build
 npm run preview
 ```
 
-Validación de esta entrega: `npm run build` completado (TypeScript y Vite); instalación con cero vulnerabilidades reportadas por npm. Se generó `package-lock.json`. No se realizó revisión visual en navegador ni exportación PDF en este entorno.
+La auditoría local verifica TypeScript y el build con las herramientas instaladas. La evaluación de vulnerabilidades conocidas de dependencias no está verificada por la restricción offline; no se afirma que estén libres de vulnerabilidades. Los resultados y limitaciones quedan en `reports/` (ignorado por Git). No se realizó revisión visual en navegador ni exportación PDF en este entorno.
 
 Conservar `package-lock.json` en Git; después usar `npm ci` para instalaciones reproducibles. Vite muestra la URL local; `dist/` contiene el sitio compilado.
 
@@ -29,7 +29,7 @@ Conservar `package-lock.json` en Git; después usar `npm ci` para instalaciones 
 - `public/media/`: fotografías y portadas aprobadas. Usar rutas como `media/foto.jpg`, sin barra inicial, y alt ES/EN.
 - `docs/branding/`: referencia visual original y decisiones de diseño.
 
-Los componentes consumen datos compartidos. El idioma actualiza el atributo HTML `lang`. Las imágenes secundarias usan lazy loading; portada e impresión cargan inmediatamente. No se cargan reproductores externos.
+Los componentes consumen datos compartidos. El idioma actualiza el atributo HTML `lang`. Las imágenes secundarias usan lazy loading; portada e impresión cargan inmediatamente. El reproductor externo de SoundCloud solo se carga al activarlo explícitamente tras el aviso de privacidad; los enlaces externos siguen disponibles.
 
 ## PDF
 
@@ -75,3 +75,6 @@ Estar fuera de `public` evita publicar originales en Pages, pero no los hace
 privados si el repositorio GitHub es público: sus archivos e historial siguen
 siendo accesibles. Para confidencialidad real hace falta almacenar los originales
 en un repositorio o almacenamiento privado.
+
+
+La portada pública se optimiza a un máximo de 2000 px sin EXIF/XMP/IPTC. Las copias originales locales se conservan en media/originals/ (ignorado por Git). Esto no elimina versiones antiguas del historial. No colocar informes ni originales privados en public/.
