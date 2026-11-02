@@ -19,6 +19,8 @@ export const releases: Release[] = [];
 export const djSets: DJSet[] = [];
 export const highlights: Highlight[] = [];
 export const gallery: Photo[] = [];
-export const assets: { hero?: Photo; about?: Photo } = {};
+export const assets: { logo: Photo; hero?: Photo; about?: Photo } = {
+  logo: { src: 'media/de155-logo.png', alt: { es: 'DE155', en: 'DE155' } },
+};
 // TODO: Instagram, SoundCloud, Spotify y Beatport oficiales.
 export const links: ArtistLink[] = [];
