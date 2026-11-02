@@ -2,11 +2,10 @@
 .noise-logo { display:block; width:100%; height:100%; padding:0; border:0; background:none; color:inherit; cursor:pointer; }
 .noise-logo:focus-visible { outline:2px solid var(--accent-text); outline-offset:-3px; }
 .noise-controls { position:relative; display:flex; align-items:center; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
-.noise-record-button, .noise-cursor-button { min-height:44px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; }
+.noise-record-button { min-height:44px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; }
 .noise-record-button { display:grid; place-items:center; width:44px; padding:5px; border-radius:50%; }
 .noise-record { display:block; width:30px; height:30px; border-radius:50%; background:radial-gradient(circle, var(--bg) 0 2px, var(--accent-text) 3px 7px, transparent 8px), repeating-radial-gradient(circle, #14191f 0 2px, #46515e 3px, #14191f 4px); }
 .noise-record-button:hover .noise-record, .noise-record.is-playing { animation:noise-spin 3s linear infinite; }
-.noise-cursor-button { padding:.5rem .8rem; font:var(--mono); }
 .noise-controls button:hover, .noise-controls button[aria-pressed="true"] { border-color:var(--accent-text); color:var(--accent-text); }
 .noise-controls button:focus-visible { outline:2px solid var(--accent-text); outline-offset:4px; }
 .noise-secret { width:100%; color:var(--accent-text); font:var(--mono); }
