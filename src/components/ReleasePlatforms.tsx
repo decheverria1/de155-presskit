@@ -15,8 +15,9 @@ export function ReleasePlatforms({ release, lang }: { release: Release; lang: La
       const platform = platforms[link.platform];
       const label = `${lang === 'es' ? 'Escuchar' : 'Listen to'} ${release.title} ${lang === 'es' ? 'en' : 'on'} ${platform.label}`;
       return <a key={link.platform} href={link.url} aria-label={label} title={platform.label}>
-        <PlatformIcon name={platform.icon}/>
-        {link.platform === 'beatport' && <span>Beatport</span>}
+        {link.platform === 'beatport'
+          ? <img className="platform-icon" src={`${import.meta.env.BASE_URL}media/icons/beatport.png`} width="24" height="24" alt="" aria-hidden="true"/>
+          : <PlatformIcon name={platform.icon}/>}
       </a>;
     })}
   </div>;

@@ -112,6 +112,13 @@
 {
   flex-shrink:0
 }
+#music .release-platforms .platform-icon
+{
+  width:24px;
+  height:24px;
+  object-fit:contain;
+  flex-shrink:0
+}
 .release-platforms span
 {
   font:var(--mono)
