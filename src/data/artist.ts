@@ -38,6 +38,18 @@ export const releases: Release[] = [
     },
     url: 'https://open.spotify.com/track/7GXkJojGkA2Bm1dyt2U6pk',
   },
+  {
+    title: 'Beat Go',
+    label: 'Crystal Cult',
+    album: 'Fragments Volumen I (VA)',
+    year: 2026,
+    date: '2026-10-30',
+    cover: {
+      src: 'media/releases/beat-go.jpg',
+      alt: { es: 'Portada de Fragments Volumen I (VA), que incluye Beat Go de DE155', en: 'Cover artwork for Fragments Volumen I (VA), featuring Beat Go by DE155' },
+    },
+    url: 'https://open.spotify.com/track/3EHJy4NHVCTVFIfbiYwGdi',
+  },
 ];
 export const djSets: DJSet[] = [];
 export const highlights: Highlight[] = [];
