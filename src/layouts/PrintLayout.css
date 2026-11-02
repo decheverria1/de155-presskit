@@ -25,6 +25,7 @@
 .print-photo-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem }
 .print-photo-grid figure { margin:0; break-inside:avoid }
 .print-photo-grid img { width:100%; height:auto }
+.print-disclaimer { flex-basis:100%; margin:0; font:var(--mono); color:var(--muted) }
 @page { size:A4; margin:10mm; background:#090909 }
 @media print
 {
