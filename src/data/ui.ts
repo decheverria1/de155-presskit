@@ -13,7 +13,7 @@ export const ui = {
     bookingInstagram: 'Instagram DM',
     bookingTodo: 'TODO — Añadir correo de booking y perfiles oficiales.',
     photoTodo: 'TODO — Fotografía del artista', print: 'Imprimir / Guardar como PDF', back: 'Volver al sitio',
-    draft: 'Primera edición / Contenido en preparación', booking: 'Booking & prensa',
+    booking: 'Booking & prensa',
   },
   en: {
     nav: ['About', 'Music', 'DJ Sets', 'Highlights', 'Gallery', 'Contact'],
@@ -29,7 +29,7 @@ export const ui = {
     bookingInstagram: 'Instagram DM',
     bookingTodo: 'TODO — Add booking email and official profiles.',
     photoTodo: 'TODO — Artist photograph', print: 'Print / Save as PDF', back: 'Back to website',
-    draft: 'First edition / Content in preparation', booking: 'Booking & press',
+    booking: 'Booking & press',
   },
 };
 export const sectionIds = ['about', 'music', 'sets', 'highlights', 'gallery', 'contact'];
