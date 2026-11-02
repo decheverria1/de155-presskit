@@ -77,3 +77,8 @@ export const assets: { logo: Photo; hero?: Photo; about?: Photo } = {
 };
 // TODO: Instagram, SoundCloud, Spotify y Beatport oficiales.
 export const links: ArtistLink[] = [];
+
+export const soundcloudSelection = [
+  { title: { es: 'Mix destacado', en: 'Featured mix' }, url: 'https://soundcloud.com/suppra-us/suppra-exclusive-podcast-w-6', height: 166 },
+  { title: { es: 'Noise Is The Message / Playlist', en: 'Noise Is The Message / Playlist' }, url: 'https://soundcloud.com/de-155-techno/sets/noise-is-the-message', height: 450 },
+];

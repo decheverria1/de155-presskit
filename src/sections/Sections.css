@@ -134,6 +134,60 @@
 {
   margin:0
 }
+.sets-selection
+{
+  display:grid;
+  gap:2rem;
+  grid-template-columns:minmax(0,1fr)
+}
+.set-feature
+{
+  min-width:0
+}
+.set-feature + .set-feature
+{
+  border-top:1px solid var(--line);
+  padding-top:2rem
+}
+.set-feature h3
+{
+  margin:0;
+  font:var(--mono);
+  color:var(--accent-text)
+}
+.soundcloud-player
+{
+  margin-top:1.25rem;
+  min-width:0
+}
+.soundcloud-player iframe
+{
+  display:block;
+  width:100%;
+  border:0;
+  background:var(--surface);
+  border-radius:4px
+}
+.soundcloud-link
+{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  margin-top:.4rem;
+  font:var(--mono);
+  color:var(--muted)
+}
+.soundcloud-link:hover,.soundcloud-link:focus-visible
+{
+  color:var(--accent-text)
+}
+@media print
+{
+  .soundcloud-player iframe
+  {
+    display:none
+  }
+}
 .gallery img
 {
   width:100%;
