@@ -227,3 +227,18 @@
   outline:1px solid var(--accent-text);
   outline-offset:4px
 }
+
+.hero-social-icon
+{
+  width:24px;
+  height:24px;
+  display:block;
+  background-color:currentColor;
+  mask-size:contain;
+  mask-position:center;
+  mask-repeat:no-repeat;
+  -webkit-mask-size:contain;
+  -webkit-mask-position:center;
+  -webkit-mask-repeat:no-repeat;
+  flex-shrink:0
+}
