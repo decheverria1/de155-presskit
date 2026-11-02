@@ -43,6 +43,12 @@ export const releases: Release[] = [
       alt: { es: 'Portada de Keep It Pumping de DE155', en: 'Cover artwork for Keep It Pumping by DE155' },
     },
     url: 'https://open.spotify.com/track/7GXkJojGkA2Bm1dyt2U6pk',
+    platforms: [
+      { platform: 'spotify', url: 'https://open.spotify.com/track/7GXkJojGkA2Bm1dyt2U6pk' },
+      { platform: 'soundcloud', url: 'https://on.soundcloud.com/G0mL2rPm2qH3hAGND8' },
+      { platform: 'beatport', url: 'https://www.beatport.com/release/keep-it-pumping/7420181' },
+      { platform: 'appleMusic', url: 'https://music.apple.com/es/song/keep-it-pumping/6808274769' },
+    ],
   },
   {
     title: 'Beat Go',
