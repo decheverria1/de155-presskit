@@ -1,1 +1,20 @@
-:root{color-scheme:dark;--bg:#090909;--surface:#101419;--text:#ececec;--gray:#5e6672;--muted:#a6adb8;--petrol:#21435e;--accent:#136acf;--accent-text:#70b2ff;--line:#303740;--gutter:clamp(1.25rem,5vw,5rem);--mono:400 .75rem/1.5 'Courier New',monospace;--font:Arial,Helvetica,sans-serif}.print-view{color-scheme:light}
+:root
+{
+  color-scheme:dark;
+  --bg:#090909;
+  --surface:#101419;
+  --text:#ececec;
+  --gray:#5e6672;
+  --muted:#a6adb8;
+  --petrol:#21435e;
+  --accent:#136acf;
+  --accent-text:#70b2ff;
+  --line:#303740;
+  --gutter:clamp(1.25rem,5vw,5rem);
+  --mono:400 .75rem/1.5 'Courier New',monospace;
+  --font:Arial,Helvetica,sans-serif
+}
+.print-view
+{
+  color-scheme:light
+}
