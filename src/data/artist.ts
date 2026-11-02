@@ -21,6 +21,10 @@ export const releases: Release[] = [
     label: 'Flower Vision Label',
     year: 2026,
     date: '2026-07-09',
+    cover: {
+      src: 'media/releases/open-your-mind.jpg',
+      alt: { es: 'Portada de Open Your Mind de DE155', en: 'Cover artwork for Open Your Mind by DE155' },
+    },
     url: 'https://open.spotify.com/track/79QJ3nEIR5WtumnmMZzBba',
   },
 ];
