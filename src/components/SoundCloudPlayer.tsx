@@ -29,7 +29,9 @@ export function SoundCloudPlayer({ url, title, lang, height = 166 }: { url: stri
       width="100%"
       height={height}
       loading="lazy"
-      allow="autoplay"
+      sandbox="allow-scripts allow-same-origin"
+      referrerPolicy="no-referrer"
+      allow="autoplay 'none'; camera 'none'; microphone 'none'; geolocation 'none'; payment 'none'"
     />
     <a className="soundcloud-link" href={url} target="_blank" rel="noopener noreferrer">
       {lang === 'es' ? 'Escuchar en SoundCloud' : 'Listen on SoundCloud'} ↗

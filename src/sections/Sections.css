@@ -166,9 +166,6 @@
   width:100%;
   border:0;
   background:#fff;
-  /* SoundCloud's cross-origin widget has no transparent/dark theme.
-     Turn its light UI dark while preserving the controls' blue hue. */
-  filter:invert(.94) hue-rotate(180deg);
   border-radius:4px
 }
 .soundcloud-link
