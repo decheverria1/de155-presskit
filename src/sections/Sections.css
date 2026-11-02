@@ -51,7 +51,13 @@
 {
   grid-template-columns:1fr
 }
-#music .cards article:has(img)
+#music .release-link
+{
+  display:block;
+  width:fit-content;
+  max-width:100%
+}
+#music .release-link:has(img)
 {
   display:grid;
   grid-template-columns:clamp(5rem,8vw,6rem) minmax(0,1fr);
