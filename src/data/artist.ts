@@ -61,6 +61,11 @@ export const releases: Release[] = [
       alt: { es: 'Portada de Fragments Volumen I (VA), que incluye Beat Go de DE155', en: 'Cover artwork for Fragments Volumen I (VA), featuring Beat Go by DE155' },
     },
     url: 'https://open.spotify.com/track/3EHJy4NHVCTVFIfbiYwGdi',
+    platforms: [
+      { platform: 'spotify', url: 'https://open.spotify.com/track/3EHJy4NHVCTVFIfbiYwGdi' },
+      { platform: 'beatport', url: 'https://www.beatport.com/es/release/fragments-i/7540399' },
+      { platform: 'appleMusic', url: 'https://music.apple.com/es/song/beat-go/6816893476' },
+    ],
   },
 ];
 export const djSets: DJSet[] = [];
