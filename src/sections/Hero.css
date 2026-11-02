@@ -110,6 +110,7 @@
 }
 .hero-photo
 {
+  margin:0;
   position:relative;
   align-self:start;
   min-width:0;
@@ -148,6 +149,27 @@
   object-fit:cover;
   object-position:60% 27%;
   width:100%
+}
+.hero-photo-trigger
+{
+  display:block;
+  width:100%;
+  padding:0;
+  border:0;
+  background:none;
+  cursor:pointer
+}
+.hero-photo-trigger:focus-visible
+{
+  outline:2px solid var(--accent-text);
+  outline-offset:4px
+}
+.hero-photo-caption
+{
+  padding:1rem .25rem .25rem;
+  color:var(--accent-text);
+  font:var(--mono);
+  text-align:center
 }
 .scroll-link
 {
