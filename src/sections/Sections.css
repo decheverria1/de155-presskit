@@ -268,3 +268,51 @@
   color:var(--accent-text);
   font:var(--mono)
 }
+
+.booking-description
+{
+  max-width:52ch;
+  line-height:1.7;
+  color:var(--muted);
+  margin:1rem 0 1.5rem
+}
+.booking-options
+{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  gap:1.5rem 2rem
+}
+.booking-preferred
+{
+  margin:.6rem 0 0;
+  font:var(--mono);
+  color:var(--accent-text)
+}
+.booking-instagram
+{
+  display:inline-flex;
+  align-items:center;
+  gap:.75rem;
+  min-height:52px;
+  color:var(--muted)
+}
+.booking-instagram>span
+{
+  display:flex;
+  flex-direction:column;
+  gap:.35rem;
+  font:var(--mono)
+}
+.booking-instagram strong
+{
+  color:var(--text);
+  font-weight:400
+}
+.booking-instagram:hover,
+.booking-instagram:hover strong,
+.booking-instagram:focus-visible,
+.booking-instagram:focus-visible strong
+{
+  color:var(--accent-text)
+}

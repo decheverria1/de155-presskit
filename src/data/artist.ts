@@ -11,8 +11,7 @@ export const artist = {
     es: 'Una identidad vinculada a la electrónica underground, las estéticas industriales y las influencias futuristas.',
     en: 'An identity rooted in underground electronic music, industrial aesthetics and futuristic influences.',
   },
-  // TODO: confirmar biografías ES/EN y añadir correo real de booking.
-  bookingEmail: '',
+  bookingEmail: 'de155.audio+bookings@gmail.com',
 };
 // TODO: añadir únicamente contenido y enlaces verificados. Nunca usar URLs ficticias.
 export const releases: Release[] = [
