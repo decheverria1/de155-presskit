@@ -33,12 +33,15 @@ function pressGallery(): Plugin {
         const resized = await sharp(original).rotate().resize({ width: 1200, height: 1200, fit: 'inside', withoutEnlargement: true }).toBuffer({ resolveWithObject: true });
         const { width, height } = resized.info;
         const angle = -Math.atan2(height, width) * 180 / Math.PI;
-        // Rotate the original silhouette, then scale uniformly to fit the photo.
-        const rotated = await sharp(watermark).rotate(angle, { background: '#00000000' }).png().toBuffer();
+        // Measure the visible silhouette, discard transparent padding, and fill
+        // the photo proportionally. Let the logo extend beyond the photo edges.
+        const rotation = await sharp(watermark).rotate(angle, { background: '#00000000' }).png().toBuffer();
+        const rotated = await sharp(rotation).trim().png().toBuffer();
         const stamp = await sharp(rotated).resize({
-          width: Math.max(1, Math.round(width * 0.96)),
-          height: Math.max(1, Math.round(height * 0.96)),
-          fit: 'inside',
+          width,
+          height,
+          fit: 'cover',
+          position: 'centre',
         }).png().toBuffer();
         const { data, info } = await sharp(resized.data).composite([{ input: stamp, gravity: 'centre' }]).webp({ quality: 70 }).toBuffer({ resolveWithObject: true });
         const hash = createHash('sha256').update(data).digest('hex').slice(0, 16);

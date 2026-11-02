@@ -65,8 +65,9 @@ Vite convierte cada foto a WebP con calidad 70, corrige la orientación y limita
 el lado más largo a 1200 px, sin ampliar fotos pequeñas ni conservar metadatos.
 Integra el logo `public/media/de155-logo.png` centrado, en blanco al 22% de
 opacidad y fondo transparente. El logo gira siguiendo la diagonal de cada foto
-y se escala proporcionalmente al mayor tamaño que cabe, con un margen del 2%
-por lado, sin deformarse ni recortarse.
+y se escala proporcionalmente a partir de su contenido visible, descartando
+los márgenes transparentes. Cubre la foto y permite recortar sus extremos en
+los bordes, sin deformarlo.
 Solo esas versiones se incluyen en la web; los originales permanecen en
 `media/press/`. No hay botones de descarga.
 
