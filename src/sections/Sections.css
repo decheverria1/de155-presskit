@@ -269,23 +269,17 @@
   font:var(--mono)
 }
 
-.booking-description
-{
-  max-width:52ch;
-  line-height:1.7;
-  color:var(--muted);
-  margin:1rem 0 1.5rem
-}
 .booking-options
 {
   display:flex;
   flex-wrap:wrap;
-  align-items:flex-start;
-  gap:1.5rem 2rem
+  align-items:flex-end;
+  gap:1.5rem 2rem;
+  margin-top:1.5rem
 }
 .booking-preferred
 {
-  margin:.6rem 0 0;
+  margin:0 0 .6rem;
   font:var(--mono);
   color:var(--accent-text)
 }
@@ -342,4 +336,14 @@
 .music-talk>a:focus-visible
 {
   color:var(--accent-text)
+}
+
+.booking-options .button
+{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.6rem;
+  min-height:52px;
+  box-sizing:border-box
 }
