@@ -33,14 +33,8 @@ function pressGallery(): Plugin {
         const resized = await sharp(original).rotate().resize({ width: 1200, height: 1200, fit: 'inside', withoutEnlargement: true }).toBuffer({ resolveWithObject: true });
         const { width, height } = resized.info;
         const angle = -Math.atan2(height, width) * 180 / Math.PI;
-        // Stretch along the photo's diagonal, then fit the rotated logo inside
-        // the image so it spans almost corner to corner without clipping.
-        const stretched = await sharp(watermark).resize({
-          width: Math.max(1, Math.round(Math.hypot(width, height))),
-          height: Math.max(1, Math.round(Math.min(width, height) * 0.25)),
-          fit: 'fill',
-        }).png().toBuffer();
-        const rotated = await sharp(stretched).rotate(angle, { background: '#00000000' }).png().toBuffer();
+        // Rotate the original silhouette, then scale uniformly to fit the photo.
+        const rotated = await sharp(watermark).rotate(angle, { background: '#00000000' }).png().toBuffer();
         const stamp = await sharp(rotated).resize({
           width: Math.max(1, Math.round(width * 0.96)),
           height: Math.max(1, Math.round(height * 0.96)),
