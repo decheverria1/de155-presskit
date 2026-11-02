@@ -27,6 +27,17 @@ export const releases: Release[] = [
     },
     url: 'https://open.spotify.com/track/79QJ3nEIR5WtumnmMZzBba',
   },
+  {
+    title: 'Keep It Pumping',
+    label: 'Flower Vision Label',
+    year: 2026,
+    date: '2026-09-17',
+    cover: {
+      src: 'media/releases/keep-it-pumping-web.jpg',
+      alt: { es: 'Portada de Keep It Pumping de DE155', en: 'Cover artwork for Keep It Pumping by DE155' },
+    },
+    url: 'https://open.spotify.com/track/7GXkJojGkA2Bm1dyt2U6pk',
+  },
 ];
 export const djSets: DJSet[] = [];
 export const highlights: Highlight[] = [];
