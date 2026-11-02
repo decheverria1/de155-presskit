@@ -20,7 +20,6 @@
 .print-document .actions,
 .print-document .scroll-link,
 .print-document #contact>.section-content>.button { display:none }
-.print-booking-email { font:var(--mono); overflow-wrap:anywhere; color:var(--muted) }
 .print-photo-collection + .print-photo-collection { margin-top:3rem }
 .print-photo-collection h3
 {
