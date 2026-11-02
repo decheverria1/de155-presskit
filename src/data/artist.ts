@@ -1,7 +1,7 @@
 import type { ArtistLink, DJSet, Highlight, Photo, Release } from '../types/content';
 
 export const artist = {
-  name: 'DE155', tagline: 'Noise Is The Message', location: 'Santiago, Chile', bpm: '145–165',
+  name: 'DE155', tagline: 'Noise Is The Message', location: 'Santiago, Chile', bpm: '145 – 165',
   genres: ['Schranz', 'Hard Techno', 'Hardgroove'],
   bio: {
     es: 'DE155 es un DJ y productor de música electrónica radicado en Santiago de Chile. Su sonido combina la agresividad del schranz contemporáneo con elementos hipnóticos, melódicos, industriales y experimentales.',
