@@ -316,3 +316,30 @@
 {
   color:var(--accent-text)
 }
+
+.music-talk
+{
+  margin-top:2rem;
+  padding-top:1.5rem;
+  border-top:1px solid var(--line)
+}
+.music-talk h3
+{
+  margin:0 0 .5rem;
+  font-size:clamp(1.4rem,2.5vw,2rem);
+  letter-spacing:-.035em
+}
+.music-talk>a
+{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  min-height:44px;
+  color:var(--muted);
+  font:var(--mono)
+}
+.music-talk>a:hover,
+.music-talk>a:focus-visible
+{
+  color:var(--accent-text)
+}
