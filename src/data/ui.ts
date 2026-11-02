@@ -1,0 +1,31 @@
+export const ui = {
+  es: {
+    nav: ['Perfil', 'Música', 'DJ Sets', 'Hitos', 'Galería', 'Contacto'],
+    about: 'La fuerza del ruido.', music: 'Lanzamientos', sets: 'Sesiones & mixes',
+    highlights: 'Trayectoria', gallery: 'Archivo visual', contact: 'Conectemos.',
+    listen: 'Explorar música', pdf: 'EPK / Guardar PDF', skip: 'Ir al contenido',
+    intro: 'DJ & productor / Electronic Press Kit', scroll: 'Explora el presskit',
+    empty: 'Contenido pendiente', releaseTodo: 'TODO — Incorporar lanzamientos, sellos, años y enlaces verificados.',
+    setsTodo: 'TODO — Incorporar sesiones, géneros, duración y enlaces.',
+    highlightsTodo: 'TODO — Incorporar presentaciones y logros verificables.',
+    galleryTodo: 'TODO — Incorporar fotografías profesionales y de presentaciones.',
+    bookingTodo: 'TODO — Añadir correo de booking y perfiles oficiales.',
+    photoTodo: 'TODO — Fotografía del artista', print: 'Imprimir / Guardar como PDF', back: 'Volver al sitio',
+    draft: 'Primera edición / Contenido en preparación', booking: 'Booking & prensa',
+  },
+  en: {
+    nav: ['About', 'Music', 'DJ Sets', 'Highlights', 'Gallery', 'Contact'],
+    about: 'The force of noise.', music: 'Releases', sets: 'Sessions & mixes',
+    highlights: 'Milestones', gallery: 'Visual archive', contact: 'Let’s connect.',
+    listen: 'Explore music', pdf: 'EPK / Save PDF', skip: 'Skip to content',
+    intro: 'DJ & producer / Electronic Press Kit', scroll: 'Explore the press kit',
+    empty: 'Content pending', releaseTodo: 'TODO — Add verified releases, labels, years and links.',
+    setsTodo: 'TODO — Add sessions, genres, durations and links.',
+    highlightsTodo: 'TODO — Add verified performances and milestones.',
+    galleryTodo: 'TODO — Add professional and live photographs.',
+    bookingTodo: 'TODO — Add booking email and official profiles.',
+    photoTodo: 'TODO — Artist photograph', print: 'Print / Save as PDF', back: 'Back to website',
+    draft: 'First edition / Content in preparation', booking: 'Booking & press',
+  },
+};
+export const sectionIds = ['about', 'music', 'sets', 'highlights', 'gallery', 'contact'];
