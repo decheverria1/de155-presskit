@@ -19,12 +19,10 @@ function pressGallery(): Plugin {
     async load(id) {
       if (id !== virtualId) return;
       images.clear();
-      // Turn the dark PNG logo into white ink with a transparent background.
-      // Keep its existing alpha and bake 22% opacity into the watermark pixels.
+      // Preserve the transparent PNG silhouette; bake 22% opacity into its alpha.
       const logo = await sharp(logoPath).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
       for (let offset = 0; offset < logo.data.length; offset += 4) {
-        const ink = 1 - (logo.data[offset] + logo.data[offset + 1] + logo.data[offset + 2]) / (3 * 255);
-        logo.data[offset + 3] = Math.round(logo.data[offset + 3] * ink * 0.22);
+        logo.data[offset + 3] = Math.round(logo.data[offset + 3] * 0.22);
         logo.data[offset] = logo.data[offset + 1] = logo.data[offset + 2] = 255;
       }
       const watermark = await sharp(logo.data, { raw: { width: logo.info.width, height: logo.info.height, channels: 4 } }).trim().png().toBuffer();
