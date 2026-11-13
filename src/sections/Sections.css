@@ -87,7 +87,7 @@
 {
   min-width:0
 }
-.releases-toggle
+.button.releases-toggle
 {
   display:flex;
   width:fit-content;
