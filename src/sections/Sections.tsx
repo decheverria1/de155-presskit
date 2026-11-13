@@ -9,10 +9,16 @@ import type { Language } from '../types/content';
 import { ReleasePlatforms } from '../components/ReleasePlatforms';
 import { PlatformIcon } from '../components/PlatformIcon';
 import './Sections.css';
+
+const sortedReleases = [...releases].sort((a, b) =>
+  (b.date ?? `${b.year}-01-01`).localeCompare(a.date ?? `${a.year}-01-01`),
+);
 export function Sections({ lang, printMode = false }: { lang: Language; printMode?: boolean }) {
   const t = ui[lang];
   const [soundcloudEnabled, setSoundcloudEnabled] = useState(false);
-  return <><Section id="about" number="01" title={t.about}><p className="bio">{artist.bio[lang]}</p><p className="philosophy">{artist.philosophy[lang]}</p><div className="facts"><span>{artist.location}</span><span>{artist.bpm} BPM</span></div>{assets.about && <Media photo={assets.about} lang={lang} eager={printMode}/>}</Section><Section id="music" number="02" title={t.music}>{releases.length ? <div className="cards">{releases.map(item => <article key={`${item.title}-${item.date ?? item.year}`}><div className="release-card">{item.cover && <Media photo={item.cover} lang={lang} eager={printMode}/>}<div className="release-details"><p className="metadata">{item.single && <>{lang === 'es' ? 'Sencillo' : 'Single'}<br/></>}{item.album && <>{item.album}<br/></>}{item.label} / {item.date ? <time dateTime={item.date}>{new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(item.date))}</time> : item.year}</p><h3>{item.title}</h3><ReleasePlatforms release={item} lang={lang}/></div></div></article>)}</div> : <Pending>{t.releaseTodo}</Pending>}</Section><Section id="sets" number="03" title={t.sets}>
+  const [showAllReleases, setShowAllReleases] = useState(false);
+  const visibleReleases = printMode || showAllReleases ? sortedReleases : sortedReleases.slice(0, 2);
+  return <><Section id="about" number="01" title={t.about}><p className="bio">{artist.bio[lang]}</p><p className="philosophy">{artist.philosophy[lang]}</p><div className="facts"><span>{artist.location}</span><span>{artist.bpm} BPM</span></div>{assets.about && <Media photo={assets.about} lang={lang} eager={printMode}/>}</Section><Section id="music" number="02" title={t.music}>{releases.length ? <><div className="cards" id="release-list">{visibleReleases.map(item => <article key={`${item.title}-${item.date ?? item.year}`}><div className="release-card">{item.cover && <Media photo={item.cover} lang={lang} eager={printMode}/>}<div className="release-details"><p className="metadata">{item.single && <>{lang === 'es' ? 'Sencillo' : 'Single'}<br/></>}{item.album && <>{item.album}<br/></>}{item.label} / {item.date ? <time dateTime={item.date}>{new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(item.date))}</time> : item.year}</p><h3>{item.title}</h3><ReleasePlatforms release={item} lang={lang}/></div></div></article>)}</div>{!printMode && sortedReleases.length > 2 && <button type="button" className="button releases-toggle" aria-expanded={showAllReleases} aria-controls="release-list" onClick={() => setShowAllReleases(value => !value)}>{lang === 'es' ? (showAllReleases ? 'Ver menos' : 'Ver más') : (showAllReleases ? 'Show less' : 'Show more')}</button>}</> : <Pending>{t.releaseTodo}</Pending>}</Section><Section id="sets" number="03" title={t.sets}>
     <div className="cards sets-selection">
       {soundcloudSelection.map(item => <article key={item.url}>
         {item.embedUrl && !printMode ? <div className="soundcloud-visual">

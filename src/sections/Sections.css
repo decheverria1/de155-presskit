@@ -87,6 +87,10 @@
 {
   min-width:0
 }
+.releases-toggle
+{
+  margin-top:1.5rem
+}
 .release-platforms
 {
   display:flex;
