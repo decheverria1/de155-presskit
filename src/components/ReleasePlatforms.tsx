@@ -9,7 +9,8 @@ const platforms = {
 } as const;
 
 export function ReleasePlatforms({ release, lang }: { release: Release; lang: Language }) {
-  const links = release.platforms ?? [{ platform: 'spotify' as const, url: release.url }];
+  const links = release.platforms ?? (release.url ? [{ platform: 'spotify' as const, url: release.url }] : []);
+  if (!links.length) return null;
   return <div className="release-platforms">
     {links.map(link => {
       const platform = platforms[link.platform];

@@ -17,6 +17,7 @@ export const artist = {
 export const releases: Release[] = [
   {
     title: 'Open Your Mind',
+    single: true,
     label: 'Flower Vision Label',
     year: 2026,
     date: '2026-07-09',
@@ -34,6 +35,7 @@ export const releases: Release[] = [
   },
   {
     title: 'Keep It Pumping',
+    single: true,
     label: 'Flower Vision Label',
     year: 2026,
     date: '2026-09-17',
@@ -65,6 +67,13 @@ export const releases: Release[] = [
       { platform: 'beatport', url: 'https://www.beatport.com/es/release/fragments-i/7540399' },
       { platform: 'appleMusic', url: 'https://music.apple.com/es/song/beat-go/6816893476' },
     ],
+  },
+  {
+    title: 'Heavyweight',
+    single: true,
+    label: 'Inherente Project Records',
+    year: 2026,
+    date: '2026-11-13',
   },
 ];
 export const highlights: Highlight[] = [];
