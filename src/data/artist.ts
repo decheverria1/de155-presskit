@@ -81,6 +81,7 @@ export const releases: Release[] = [
     url: 'https://go.protonradio.com/r/rlmSqhbVm03XY',
     platforms: [
       { platform: 'spotify', url: 'https://open.spotify.com/album/2HJroLhrNiccplzg5aKP16' },
+      { platform: 'soundcloud', url: 'https://on.soundcloud.com/qw9hKPaUDxHfApFwMB' },
       { platform: 'beatport', url: 'https://www.beatport.com/release/heavyweight/7693175' },
       { platform: 'appleMusic', url: 'https://music.apple.com/us/album/heavyweight/6831627512' },
       { platform: 'proton', url: 'https://go.protonradio.com/r/rlmSqhbVm03XY' },
