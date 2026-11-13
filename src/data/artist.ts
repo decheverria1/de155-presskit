@@ -74,6 +74,17 @@ export const releases: Release[] = [
     label: 'Inherente Project Records',
     year: 2026,
     date: '2026-11-13',
+    cover: {
+      src: 'media/releases/heavyweight.jpg',
+      alt: { es: 'Portada de Heavyweight de DE155', en: 'Cover artwork for Heavyweight by DE155' },
+    },
+    url: 'https://go.protonradio.com/r/rlmSqhbVm03XY',
+    platforms: [
+      { platform: 'spotify', url: 'https://open.spotify.com/album/2HJroLhrNiccplzg5aKP16' },
+      { platform: 'beatport', url: 'https://www.beatport.com/release/heavyweight/7693175' },
+      { platform: 'appleMusic', url: 'https://music.apple.com/us/album/heavyweight/6831627512' },
+      { platform: 'proton', url: 'https://go.protonradio.com/r/rlmSqhbVm03XY' },
+    ],
   },
 ];
 export const highlights: Highlight[] = [];
