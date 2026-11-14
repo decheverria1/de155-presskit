@@ -1,6 +1,6 @@
 export const ui = {
   es: {
-    nav: ['Perfil', 'Música', 'DJ Sets', 'Hitos', 'Galería', 'Contacto'],
+    nav: ['Perfil', 'Trayectoria', 'Música', 'DJ Sets', 'Galería', 'Contacto'],
     about: 'La fuerza del ruido.', music: 'Lanzamientos', sets: 'Sesiones & mixes',
     highlights: 'Trayectoria', gallery: 'Archivo visual', contact: 'Conectemos.',
     listen: 'Explorar música', pdf: 'EPK / Guardar PDF', skip: 'Ir al contenido',
@@ -16,7 +16,7 @@ export const ui = {
     booking: 'Booking & prensa',
   },
   en: {
-    nav: ['About', 'Music', 'DJ Sets', 'Highlights', 'Gallery', 'Contact'],
+    nav: ['About', 'Milestones', 'Music', 'DJ Sets', 'Gallery', 'Contact'],
     about: 'The force of noise.', music: 'Releases', sets: 'Sessions & mixes',
     highlights: 'Milestones', gallery: 'Visual archive', contact: 'Let’s connect.',
     listen: 'Explore music', pdf: 'EPK / Save PDF', skip: 'Skip to content',
@@ -32,4 +32,4 @@ export const ui = {
     booking: 'Booking & press',
   },
 };
-export const sectionIds = ['about', 'music', 'sets', 'highlights', 'gallery', 'contact'];
+export const sectionIds = ['about', 'highlights', 'music', 'sets', 'gallery', 'contact'];

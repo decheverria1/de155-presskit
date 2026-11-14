@@ -258,21 +258,15 @@
   font-size:clamp(1.2rem,2vw,2rem);
   overflow-wrap:anywhere
 }
-.milestones
+.trajectory-copy
 {
-  list-style:none;
-  padding:0;
-  margin:0
+  display:grid;
+  gap:1.5rem
 }
-.milestones li
+.trajectory-copy a
 {
-  border-bottom:1px solid var(--line);
-  padding:1rem 0
-}
-.milestones span
-{
-  color:var(--accent-text);
-  font:var(--mono)
+  text-decoration:underline;
+  text-underline-offset:.18em
 }
 
 .booking-options
