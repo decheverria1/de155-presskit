@@ -87,11 +87,18 @@
 {
   min-width:0
 }
-.button.releases-toggle
+.release-list-controls
 {
   display:flex;
-  width:fit-content;
-  margin:1.5rem 0 0 auto
+  flex-wrap:wrap;
+  justify-content:flex-end;
+  align-items:center;
+  gap:1rem;
+  margin-top:1.5rem
+}
+.release-list-controls .metadata
+{
+  margin:0
 }
 .release-platforms
 {
