@@ -28,7 +28,7 @@
   border-top:1px solid var(--line);
   border-left:3px solid var(--accent-text);
   color:var(--accent-text);
-  font-size:1.75rem;
+  font-size:var(--type-subheading);
   letter-spacing:.04em;
   text-transform:uppercase;
   break-after:avoid
@@ -89,24 +89,26 @@
   .print-document .tempo { display:flex; flex-direction:column; text-align:right }
   .print-document .tempo strong { font-size:20pt; color:var(--accent-text) }
   .print-document .hero-bottom { grid-template-columns:1.5fr 1fr; gap:6mm; padding:6mm 0 }
-  .print-document .tagline { font-size:32pt }
+  .print-document .tagline { font-size:28pt }
   .print-document .hero-photo img { height:58mm }
   .print-document .hero-socials { margin-top:3mm }
   .print-document .section { display:block; padding:7mm 0 }
   .print-document .section[hidden] { display:none }
   .print-document .section-heading { margin-bottom:5mm; break-after:avoid }
-  .print-document h2 { font-size:26pt }
+  .print-document h2 { font-size:22pt }
   .print-document .bio { font-size:12pt }
+  .print-document .trajectory-item dd { font-size:10pt }
+  .print-document .trajectory-copy { gap:5mm }
   .print-document .philosophy { margin:3mm 0 }
   .print-document .facts { padding:3mm 0 }
   .print-document .cards { gap:4mm }
   .print-document .cards article { break-inside:avoid; padding-bottom:3mm }
-  .print-document .cards h3 { font-size:15pt }
+  .print-document .cards h3 { font-size:12pt }
   .print-document #music .release-card:has(img),
   .print-document #sets .release-card:has(img) { grid-template-columns:25mm minmax(0,1fr); gap:5mm }
   .print-document .release-platforms a { min-width:9mm; min-height:9mm }
   .print-document .print-photo-collection + .print-photo-collection { margin-top:10mm }
-  .print-document .print-photo-collection h3 { font-size:20pt; padding:4mm; margin-bottom:5mm }
+  .print-document .print-photo-collection h3 { font-size:12pt; padding:4mm; margin-bottom:5mm }
   .print-document .print-photo-grid { column-gap:4mm }
   .print-document .print-photo-grid figure { margin-bottom:4mm }
   .print-document .print-photo-grid img { height:auto; max-height:none }

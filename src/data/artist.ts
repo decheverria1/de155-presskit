@@ -90,15 +90,17 @@ export const releases: Release[] = [
 ];
 export const highlights: Highlight[] = [
   {
+    label: { es: 'Lanzamientos', en: 'Releases' },
     description: {
-      es: 'Desde julio de 2026, DE155 mantiene una actividad constante de lanzamientos en sellos nacionales e internacionales como Flower Vision, Crystal Cult e Inherente Project. Para diciembre de 2026 tiene previstos nuevos lanzamientos en Hardtool Vision, con detalles por anunciar.',
-      en: 'Since July 2026, DE155 has maintained a steady release schedule on Chilean and international labels such as Flower Vision, Crystal Cult and Inherente Project. New releases on Hardtool Vision are planned for December 2026, with details to be announced.',
+      es: 'Lanzamientos continuos desde julio de 2026. Próximas entregas en Hardtool Vision en diciembre de 2026, con detalles por anunciar.',
+      en: 'Regular releases since July 2026. New music on Hardtool Vision is planned for December 2026, with details to be announced.',
     },
   },
   {
+    label: { es: 'En cabina', en: 'In the booth' },
     description: {
-      es: 'Sus producciones inéditas han registrado descargas de artistas como Vendex, Rudosa, Aiden, In Furch, GNRØ, Buchecha y Dana Vicii. «Beat Go» también sonó de la mano de Aiden, quien abrió con el track su ',
-      en: 'His unreleased productions have been downloaded by artists including Vendex, Rudosa, Aiden, In Furch, GNRØ, Buchecha and Dana Vicii. “Beat Go” also opened Aiden’s ',
+      es: 'Inéditos descargados por Vendex, Rudosa, Aiden, In Furch, GNRØ, Buchecha y Dana Vicii. «Beat Go» también sonó de la mano de Aiden, quien abrió con el track su ',
+      en: 'Unreleased tracks downloaded by Vendex, Rudosa, Aiden, In Furch, GNRØ, Buchecha and Dana Vicii. “Beat Go” also opened Aiden’s ',
     },
     link: {
       url: 'https://youtu.be/i60w2f4NBQk',
@@ -106,9 +108,10 @@ export const highlights: Highlight[] = [
     },
   },
   {
+    label: { es: 'Presentaciones', en: 'Live appearances' },
     description: {
-      es: 'Su recorrido en cabina incluye presentaciones en Club Guilty, Club Ámbar y Clubroom.',
-      en: 'His DJ appearances include performances at Club Guilty, Club Ámbar and Clubroom.',
+      es: 'Presentaciones en Club Guilty, Club Ámbar y Clubroom.',
+      en: 'Performances at Club Guilty, Club Ámbar and Clubroom.',
     },
   },
 ];

@@ -61,7 +61,7 @@
 }
 .tagline
 {
-  font-size:clamp(2.7rem,7vw,7rem);
+  font-size:var(--type-display);
   font-weight:800;
   line-height:.98;
   letter-spacing:-.055em;
@@ -204,7 +204,7 @@
   }
   .tempo strong
   {
-    font-size:4rem;
+    font-size:var(--type-heading);
     letter-spacing:-.04em;
     white-space:nowrap;
     color:var(--accent-text)

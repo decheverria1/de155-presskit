@@ -1,6 +1,6 @@
 .bio
 {
-  font-size:clamp(1.25rem,2.1vw,1.9rem);
+  font-size:var(--type-lead);
   line-height:1.5;
   margin:0
 }
@@ -44,7 +44,7 @@
 }
 .cards h3
 {
-  font-size:1.6rem;
+  font-size:var(--type-subheading);
   margin:.5rem 0
 }
 #music .cards,#sets .cards
@@ -255,13 +255,33 @@
 }
 .email
 {
-  font-size:clamp(1.2rem,2vw,2rem);
+  font-size:var(--type-lead);
   overflow-wrap:anywhere
 }
 .trajectory-copy
 {
   display:grid;
-  gap:1.5rem
+  gap:1.75rem;
+  margin:0;
+  max-width:65ch
+}
+.trajectory-item dt
+{
+  font:var(--mono);
+  color:var(--accent-text);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-bottom:.6rem
+}
+.trajectory-item dd
+{
+  margin:0;
+  font-size:var(--type-body);
+  line-height:1.7
+}
+.trajectory-item
+{
+  break-inside:avoid
 }
 .trajectory-copy a
 {
@@ -320,7 +340,7 @@
 .music-talk h3
 {
   margin:0 0 .5rem;
-  font-size:clamp(1.4rem,2.5vw,2rem);
+  font-size:var(--type-subheading);
   letter-spacing:-.035em
 }
 .music-talk>a
