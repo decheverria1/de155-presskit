@@ -97,7 +97,7 @@ export const highlights: Highlight[] = [
     },
   },
   {
-    label: { es: 'En cabina', en: 'In the booth' },
+    label: { es: 'DJ Support', en: 'DJ Support' },
     description: {
       es: 'Inéditos descargados por Vendex, Rudosa, Aiden, In Furcht, GNRØ, Buchecha y Dana Vicii. «Beat Go» también sonó de la mano de Aiden, quien abrió con el track su ',
       en: 'Unreleased tracks downloaded by Vendex, Rudosa, Aiden, In Furcht, GNRØ, Buchecha and Dana Vicii. “Beat Go” also opened Aiden’s ',
