@@ -99,8 +99,8 @@ export const highlights: Highlight[] = [
   {
     label: { es: 'En cabina', en: 'In the booth' },
     description: {
-      es: 'Inéditos descargados por Vendex, Rudosa, Aiden, In Furch, GNRØ, Buchecha y Dana Vicii. «Beat Go» también sonó de la mano de Aiden, quien abrió con el track su ',
-      en: 'Unreleased tracks downloaded by Vendex, Rudosa, Aiden, In Furch, GNRØ, Buchecha and Dana Vicii. “Beat Go” also opened Aiden’s ',
+      es: 'Inéditos descargados por Vendex, Rudosa, Aiden, In Furcht, GNRØ, Buchecha y Dana Vicii. «Beat Go» también sonó de la mano de Aiden, quien abrió con el track su ',
+      en: 'Unreleased tracks downloaded by Vendex, Rudosa, Aiden, In Furcht, GNRØ, Buchecha and Dana Vicii. “Beat Go” also opened Aiden’s ',
     },
     link: {
       url: 'https://youtu.be/i60w2f4NBQk',
