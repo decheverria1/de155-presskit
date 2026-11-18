@@ -107,6 +107,11 @@
   align-items:center;
   gap:.5rem
 }
+.release-platforms .release-action
+{
+  min-height:44px;
+  padding-block:.55rem;
+}
 .release-platforms a:not(.button)
 {
   display:inline-flex;

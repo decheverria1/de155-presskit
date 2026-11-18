@@ -19,7 +19,7 @@ export function ReleasePlatforms({ release, lang, preorder = false }: { release:
         const action = preorder
           ? (lang === 'es' ? 'Preordenar en Beatport' : 'Pre-order on Beatport')
           : (lang === 'es' ? 'Ver en Beatport' : 'View on Beatport');
-        return <a key={link.platform} className="button" href={link.url}>{action}</a>;
+        return <a key={link.platform} className="button release-action" href={link.url}>{action}</a>;
       }
       const label = link.platform === 'proton'
         ? `${release.title}: ${lang === 'es' ? 'todas las plataformas' : 'all platforms'}`
