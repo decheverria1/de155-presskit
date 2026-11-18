@@ -368,3 +368,16 @@
   box-sizing:border-box
 }
 
+
+#music .cards .release-status
+{
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin:0 0 .35rem;
+}
+#music .release-action
+{
+  margin-top:.65rem;
+}

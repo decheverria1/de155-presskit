@@ -5,7 +5,7 @@ import { artist, assets, releases, soundcloudSelection, highlights } from '../da
 import { ui } from '../data/ui';
 import { Section, Pending } from '../components/Section';
 import { Media } from '../components/Media';
-import type { Language } from '../types/content';
+import type { Language, Release } from '../types/content';
 import { ReleasePlatforms } from '../components/ReleasePlatforms';
 import { PlatformIcon } from '../components/PlatformIcon';
 import './Sections.css';
@@ -13,12 +13,62 @@ import './Sections.css';
 const sortedReleases = [...releases].sort((a, b) =>
   (b.date ?? `${b.year}-01-01`).localeCompare(a.date ?? `${a.year}-01-01`),
 );
+const releaseCalendar = new Intl.DateTimeFormat('sv-SE', { timeZone: 'America/Santiago' });
+
+function ReleaseCard({ item, lang, printMode }: { item: Release; lang: Language; printMode: boolean }) {
+  const date = item.date;
+  const releaseDate = date && <time dateTime={date}>{new Intl.DateTimeFormat(lang, {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+  }).format(new Date(date))}</time>;
+
+  if (item.beatportPreorder && date) {
+    const upcoming = releaseCalendar.format(new Date()) < date;
+    const spanish = lang === 'es';
+    const status = upcoming
+      ? (spanish ? 'Próximo lanzamiento' : 'Upcoming release')
+      : (spanish ? 'Ya disponible' : 'Out now');
+    const action = upcoming
+      ? (spanish ? 'Preordenar en Beatport' : 'Pre-order on Beatport')
+      : (spanish ? 'Ver en Beatport' : 'View on Beatport');
+
+    return <article>
+      <div className="release-card">
+        {item.cover && <Media photo={item.cover} lang={lang} eager={printMode}/>}
+        <div className="release-details">
+          <p className="release-status">{status}</p>
+          <h3>{item.title}</h3>
+          <p className="metadata">{spanish ? 'Parte de' : 'From'} <em>{item.album}</em> · {item.label}</p>
+          <p className="metadata">{upcoming && (spanish ? 'Sale el ' : 'Out ')}{releaseDate}</p>
+          <a className="button release-action" href={item.beatportPreorder}>{action}</a>
+        </div>
+      </div>
+    </article>;
+  }
+
+  return <article>
+    <div className="release-card">
+      {item.cover && <Media photo={item.cover} lang={lang} eager={printMode}/>}
+      <div className="release-details">
+        <p className="metadata">
+          {item.single && <>{lang === 'es' ? 'Sencillo' : 'Single'}<br/></>}
+          {item.album && <>{item.album}<br/></>}
+          {item.label} / {releaseDate || item.year}
+        </p>
+        <h3>{item.title}</h3>
+        <ReleasePlatforms release={item} lang={lang}/>
+      </div>
+    </div>
+  </article>;
+}
+
 export function Sections({ lang, printMode = false }: { lang: Language; printMode?: boolean }) {
   const t = ui[lang];
   const [soundcloudEnabled, setSoundcloudEnabled] = useState(false);
   const [showAllReleases, setShowAllReleases] = useState(false);
   const visibleReleases = printMode || showAllReleases ? sortedReleases : sortedReleases.slice(0, 2);
-  return <><Section id="about" number="01" title={t.about}><p className="bio">{artist.bio[lang]}</p><p className="philosophy">{artist.philosophy[lang]}</p><div className="facts"><span>{artist.location}</span><span>{artist.bpm} BPM</span></div>{assets.about && <Media photo={assets.about} lang={lang} eager={printMode}/>}</Section><Section id="music" number="02" title={t.music}>{releases.length ? <><div className="cards" id="release-list">{visibleReleases.map(item => <article key={`${item.title}-${item.date ?? item.year}`}><div className="release-card">{item.cover && <Media photo={item.cover} lang={lang} eager={printMode}/>}<div className="release-details"><p className="metadata">{item.single && <>{lang === 'es' ? 'Sencillo' : 'Single'}<br/></>}{item.album && <>{item.album}<br/></>}{item.label} / {item.date ? <time dateTime={item.date}>{new Intl.DateTimeFormat(lang, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(item.date))}</time> : item.year}</p><h3>{item.title}</h3><ReleasePlatforms release={item} lang={lang}/></div></div></article>)}</div>{!printMode && sortedReleases.length > 2 && <div className="release-list-controls"><p className="metadata" role="status">{lang === 'es' ? `Mostrando ${visibleReleases.length} de ${sortedReleases.length}` : `Showing ${visibleReleases.length} of ${sortedReleases.length}`}</p><button type="button" className="button primary releases-toggle" aria-expanded={showAllReleases} aria-controls="release-list" onClick={() => setShowAllReleases(value => !value)}>{lang === 'es' ? (showAllReleases ? 'Ver menos' : 'Ver más') : (showAllReleases ? 'Show less' : 'Show more')}</button></div>}</> : <Pending>{t.releaseTodo}</Pending>}</Section><Section id="highlights" number="03" title={t.highlights}>
+  return <><Section id="about" number="01" title={t.about}><p className="bio">{artist.bio[lang]}</p><p className="philosophy">{artist.philosophy[lang]}</p><div className="facts"><span>{artist.location}</span><span>{artist.bpm} BPM</span></div>{assets.about && <Media photo={assets.about} lang={lang} eager={printMode}/>}</Section><Section id="music" number="02" title={t.music}>{releases.length ? <><div className="cards" id="release-list">{visibleReleases.map(item =>
+    <ReleaseCard key={`${item.title}-${item.date ?? item.year}`} item={item} lang={lang} printMode={printMode}/>
+  )}</div>{!printMode && sortedReleases.length > 2 && <div className="release-list-controls"><p className="metadata" role="status">{lang === 'es' ? `Mostrando ${visibleReleases.length} de ${sortedReleases.length}` : `Showing ${visibleReleases.length} of ${sortedReleases.length}`}</p><button type="button" className="button primary releases-toggle" aria-expanded={showAllReleases} aria-controls="release-list" onClick={() => setShowAllReleases(value => !value)}>{lang === 'es' ? (showAllReleases ? 'Ver menos' : 'Ver más') : (showAllReleases ? 'Show less' : 'Show more')}</button></div>}</> : <Pending>{t.releaseTodo}</Pending>}</Section><Section id="highlights" number="03" title={t.highlights}>
     <dl className="trajectory-copy">
       {highlights.map((item, index) => <div className="trajectory-item" key={index}><dt>{item.label[lang]}</dt><dd>{item.description[lang]}{item.link && <><a href={item.link.url} target="_blank" rel="noopener noreferrer">{item.link.label[lang]}</a>.</>}</dd></div>)}
     </dl>

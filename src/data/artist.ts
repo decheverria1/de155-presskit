@@ -16,6 +16,18 @@ export const artist = {
 // TODO: añadir únicamente contenido y enlaces verificados. Nunca usar URLs ficticias.
 export const releases: Release[] = [
   {
+    title: 'Check This Out',
+    label: 'HardTool Vision Records',
+    album: 'THE WORLD OF HARDTOOL VISION',
+    year: 2026,
+    date: '2026-12-04',
+    cover: {
+      src: 'media/releases/check-this-out.jpg',
+      alt: { es: 'Portada de THE WORLD OF HARDTOOL VISION', en: 'THE WORLD OF HARDTOOL VISION cover artwork' },
+    },
+    beatportPreorder: 'https://www.beatport.com/track/check-this-out/31275058',
+  },
+  {
     title: 'Open Your Mind',
     single: true,
     label: 'Flower Vision Label',
