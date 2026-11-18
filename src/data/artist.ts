@@ -79,6 +79,7 @@ export const releases: Release[] = [
     url: 'https://open.spotify.com/track/3EHJy4NHVCTVFIfbiYwGdi',
     platforms: [
       { platform: 'spotify', url: 'https://open.spotify.com/track/3EHJy4NHVCTVFIfbiYwGdi' },
+      { platform: 'soundcloud', url: 'https://on.soundcloud.com/18KlW7t02YbVWfIeyr' },
       { platform: 'beatport', url: 'https://www.beatport.com/es/release/fragments-i/7540399' },
       { platform: 'appleMusic', url: 'https://music.apple.com/es/song/beat-go/6816893476' },
     ],
