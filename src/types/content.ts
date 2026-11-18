@@ -2,6 +2,6 @@ export type Language = 'es' | 'en';
 export type Localized = Record<Language, string>;
 export interface Photo { src: string; alt: Localized }
 export interface PlatformLink { platform: 'spotify' | 'soundcloud' | 'beatport' | 'appleMusic' | 'proton'; url: string }
-export interface Release { title: string; label: string; single?: boolean; album?: string; beatportPreorder?: string; year: number; date?: string; cover?: Photo; url?: string; platforms?: PlatformLink[] }
+export interface Release { title: string; label: string; single?: boolean; album?: string; preorder?: boolean; year: number; date?: string; cover?: Photo; url?: string; platforms?: PlatformLink[] }
 export interface Highlight { label: Localized; description: Localized; link?: { url: string; label: Localized } }
 export interface ArtistLink { label: string; url: string }

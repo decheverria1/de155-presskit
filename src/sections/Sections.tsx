@@ -21,29 +21,7 @@ function ReleaseCard({ item, lang, printMode }: { item: Release; lang: Language;
     day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
   }).format(new Date(date))}</time>;
 
-  if (item.beatportPreorder && date) {
-    const upcoming = releaseCalendar.format(new Date()) < date;
-    const spanish = lang === 'es';
-    const status = upcoming
-      ? (spanish ? 'Próximo lanzamiento' : 'Upcoming release')
-      : (spanish ? 'Ya disponible' : 'Out now');
-    const action = upcoming
-      ? (spanish ? 'Preordenar en Beatport' : 'Pre-order on Beatport')
-      : (spanish ? 'Ver en Beatport' : 'View on Beatport');
-
-    return <article>
-      <div className="release-card">
-        {item.cover && <Media photo={item.cover} lang={lang} eager={printMode}/>}
-        <div className="release-details">
-          <p className="release-status">{status}</p>
-          <h3>{item.title}</h3>
-          <p className="metadata">{spanish ? 'Parte de' : 'From'} <em>{item.album}</em> · {item.label}</p>
-          <p className="metadata">{upcoming && (spanish ? 'Sale el ' : 'Out ')}{releaseDate}</p>
-          <a className="button release-action" href={item.beatportPreorder}>{action}</a>
-        </div>
-      </div>
-    </article>;
-  }
+  const preorder = Boolean(item.preorder && date && releaseCalendar.format(new Date()) < date);
 
   return <article>
     <div className="release-card">
@@ -52,10 +30,10 @@ function ReleaseCard({ item, lang, printMode }: { item: Release; lang: Language;
         <p className="metadata">
           {item.single && <>{lang === 'es' ? 'Sencillo' : 'Single'}<br/></>}
           {item.album && <>{item.album}<br/></>}
-          {item.label} / {releaseDate || item.year}
+          {item.label} / {releaseDate || item.year}{preorder && (lang === 'es' ? ' · Preventa' : ' · Pre-order')}
         </p>
         <h3>{item.title}</h3>
-        <ReleasePlatforms release={item} lang={lang}/>
+        <ReleasePlatforms release={item} lang={lang} preorder={preorder}/>
       </div>
     </div>
   </article>;

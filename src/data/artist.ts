@@ -25,7 +25,10 @@ export const releases: Release[] = [
       src: 'media/releases/check-this-out.jpg',
       alt: { es: 'Portada de THE WORLD OF HARDTOOL VISION', en: 'THE WORLD OF HARDTOOL VISION cover artwork' },
     },
-    beatportPreorder: 'https://www.beatport.com/track/check-this-out/31275058',
+    preorder: true,
+    platforms: [
+      { platform: 'beatport', url: 'https://www.beatport.com/track/check-this-out/31275058' },
+    ],
   },
   {
     title: 'Open Your Mind',
