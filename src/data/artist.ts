@@ -18,7 +18,7 @@ export const releases: Release[] = [
   {
     title: 'Check This Out',
     label: 'HardTool Vision Records',
-    album: 'THE WORLD OF HARDTOOL VISION',
+    album: 'THE WORLD OF HARDTOOL VISION (VA)',
     year: 2026,
     date: '2026-12-04',
     cover: {

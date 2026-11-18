@@ -107,7 +107,7 @@
   align-items:center;
   gap:.5rem
 }
-.release-platforms a
+.release-platforms a:not(.button)
 {
   display:inline-flex;
   align-items:center;
@@ -117,7 +117,7 @@
   min-height:44px;
   color:var(--muted)
 }
-.release-platforms a:hover,.release-platforms a:focus-visible
+.release-platforms a:not(.button):hover,.release-platforms a:not(.button):focus-visible
 {
   color:var(--accent-text)
 }
