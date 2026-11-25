@@ -14,6 +14,8 @@ const sortedReleases = [...releases].sort((a, b) =>
   (b.date ?? `${b.year}-01-01`).localeCompare(a.date ?? `${a.year}-01-01`),
 );
 const releaseCalendar = new Intl.DateTimeFormat('sv-SE', { timeZone: 'America/Santiago' });
+const releasesPerPage = 5;
+const collapsedReleaseCount = 2;
 
 function ReleaseCard({ item, lang, printMode }: { item: Release; lang: Language; printMode: boolean }) {
   const date = item.date;
@@ -42,11 +44,45 @@ function ReleaseCard({ item, lang, printMode }: { item: Release; lang: Language;
 export function Sections({ lang, printMode = false }: { lang: Language; printMode?: boolean }) {
   const t = ui[lang];
   const [soundcloudEnabled, setSoundcloudEnabled] = useState(false);
-  const [showAllReleases, setShowAllReleases] = useState(false);
-  const visibleReleases = printMode || showAllReleases ? sortedReleases : sortedReleases.slice(0, 2);
+  const [releasesExpanded, setReleasesExpanded] = useState(false);
+  const [releasePage, setReleasePage] = useState(0);
+  const pageCount = Math.ceil(sortedReleases.length / releasesPerPage);
+  const showPagination = releasesExpanded && pageCount > 1;
+  const pageStart = releasePage * releasesPerPage;
+  const visibleReleases = printMode ? sortedReleases.slice(0, releasesPerPage) : sortedReleases.slice(
+    releasesExpanded ? pageStart : 0,
+    releasesExpanded ? pageStart + releasesPerPage : collapsedReleaseCount,
+  );
+  const isSpanish = lang === 'es';
+  const visibleRange = showPagination ? `${pageStart + 1}–${pageStart + visibleReleases.length}` : visibleReleases.length;
+
+  function toggleReleases() {
+    setReleasesExpanded(!releasesExpanded);
+    setReleasePage(0);
+  }
   return <><Section id="about" number="01" title={t.about}><p className="bio">{artist.bio[lang]}</p><p className="philosophy">{artist.philosophy[lang]}</p><div className="facts"><span>{artist.location}</span><span>{artist.bpm} BPM</span></div>{assets.about && <Media photo={assets.about} lang={lang} eager={printMode}/>}</Section><Section id="music" number="02" title={t.music}>{releases.length ? <><div className="cards" id="release-list">{visibleReleases.map(item =>
     <ReleaseCard key={`${item.title}-${item.date ?? item.year}`} item={item} lang={lang} printMode={printMode}/>
-  )}</div>{!printMode && sortedReleases.length > 2 && <div className="release-list-controls"><p className="metadata" role="status">{lang === 'es' ? `Mostrando ${visibleReleases.length} de ${sortedReleases.length}` : `Showing ${visibleReleases.length} of ${sortedReleases.length}`}</p><button type="button" className="button primary releases-toggle" aria-expanded={showAllReleases} aria-controls="release-list" onClick={() => setShowAllReleases(value => !value)}>{lang === 'es' ? (showAllReleases ? 'Ver menos' : 'Ver más') : (showAllReleases ? 'Show less' : 'Show more')}</button></div>}</> : <Pending>{t.releaseTodo}</Pending>}</Section><Section id="highlights" number="03" title={t.highlights}>
+  )}</div>
+    {!printMode && sortedReleases.length > collapsedReleaseCount && <div className="release-list-controls">
+      <p className="metadata" role="status">
+        {isSpanish ? `Mostrando ${visibleRange} de ${sortedReleases.length}` : `Showing ${visibleRange} of ${sortedReleases.length}`}
+      </p>
+      {showPagination && <nav className="release-pagination" aria-label={isSpanish ? 'Páginas de lanzamientos' : 'Release pages'}>
+        <button type="button" className="button" aria-controls="release-list" disabled={releasePage === 0} onClick={() => setReleasePage(releasePage - 1)}>
+          {isSpanish ? 'Anterior' : 'Previous'}
+        </button>
+        <span className="metadata">
+          {isSpanish ? `Página ${releasePage + 1} de ${pageCount}` : `Page ${releasePage + 1} of ${pageCount}`}
+        </span>
+        <button type="button" className="button" aria-controls="release-list" disabled={releasePage === pageCount - 1} onClick={() => setReleasePage(releasePage + 1)}>
+          {isSpanish ? 'Siguiente' : 'Next'}
+        </button>
+      </nav>}
+      <button type="button" className="button primary releases-toggle" aria-expanded={releasesExpanded} aria-controls="release-list" onClick={toggleReleases}>
+        {isSpanish ? (releasesExpanded ? 'Ver menos' : 'Ver más') : (releasesExpanded ? 'Show less' : 'Show more')}
+      </button>
+    </div>}
+  </> : <Pending>{t.releaseTodo}</Pending>}</Section><Section id="highlights" number="03" title={t.highlights}>
     <dl className="trajectory-copy">
       {highlights.map((item, index) => <div className="trajectory-item" key={index}><dt>{item.label[lang]}</dt><dd>{item.description[lang]}{item.link && <><a href={item.link.url} target="_blank" rel="noopener noreferrer">{item.link.label[lang]}</a>.</>}</dd></div>)}
     </dl>

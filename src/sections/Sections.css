@@ -100,6 +100,18 @@
 {
   margin:0
 }
+.release-pagination
+{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:.5rem
+}
+.release-pagination .button:disabled
+{
+  cursor:default;
+  opacity:.5
+}
 .release-platforms
 {
   display:flex;
