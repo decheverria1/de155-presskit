@@ -3,7 +3,7 @@ export const ui = {
     nav: ['Perfil', 'Música', 'Trayectoria', 'DJ Sets', 'Galería', 'Contacto'],
     about: 'La fuerza del ruido.', music: 'Lanzamientos', sets: 'Sesiones & mixes',
     highlights: 'Trayectoria', gallery: 'Archivo visual', contact: 'Conectemos.',
-    listen: 'Explorar música', pdf: 'EPK / Guardar PDF', skip: 'Ir al contenido',
+    listen: 'Explorar música', pdf: 'EPK / Descargar PDF', skip: 'Ir al contenido',
     intro: 'DJ & productor / Electronic Press Kit', scroll: 'Explora el presskit',
     empty: 'Contenido pendiente', releaseTodo: 'TODO — Incorporar lanzamientos, sellos, años y enlaces verificados.',
     setsTodo: 'TODO — Incorporar sesiones, géneros, duración y enlaces.',
